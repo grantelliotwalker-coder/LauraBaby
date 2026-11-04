@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Laura &amp; Bump — Our Little One</title>
+  <meta name="description" content="Our pregnancy journey — week by week, what to eat, where to give birth, and what to read." />
+  <meta name="theme-color" content="#fbf3ef" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Laura &amp; Bump" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23f4d9dc'/%3E%3Cpath d='M32 47s-14-8.6-14-18.2C18 23.4 22 20 26.3 20c2.7 0 4.6 1.4 5.7 3.3 1.1-1.9 3-3.3 5.7-3.3C42 20 46 23.4 46 28.8 46 38.4 32 47 32 47Z' fill='%23c0627d'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,100,1;1,9..144,300..900,100,1&family=Instrument+Sans:wght@400;500;600&display=swap" />
+
+  <style>
+    /* =========================================================
+       THEME — soft blush, rose and sage
+       ========================================================= */
+    :root {
+      --bg:        #fbf3ef;  /* warm blush cream */
+      --bg-2:      #ffffff;  /* cards */
+      --bg-3:      #f6e6e4;  /* tinted surface */
+      --line:      rgba(74, 44, 52, 0.11);
+      --ink:       #43282f;  /* main text — deep plum brown */
+      --muted:     #8c6f75;  /* secondary text */
+      --rose:      #c0627d;  /* main accent */
+      --rose-2:    #e5a3b1;
+      --blush:     #f4d9dc;
+      --sage:      #6f8f6c;  /* "eat" colour */
+      --sage-bg:   #e8f0e4;
+      --clay:      #c0627d;  /* "avoid" colour */
+      --clay-bg:   #fbe4e7;
+      --gold:      #d6a15b;
+      --lilac:     #a892c4;
+
+      --display: "Fraunces", Georgia, serif;
+      --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+      --gutter: clamp(16px, 5vw, 96px);
+      --header-h: 72px;
+      --safe-top: env(safe-area-inset-top, 0px);
+      --radius: 20px;
+      --shadow: 0 1px 2px rgba(67,40,47,.04), 0 10px 30px -12px rgba(67,40,47,.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: 100%; margin: 0 auto; padding: 0 var(--gutter); padding-left: max(var(--gutter), env(safe-area-inset-left)); padding-right: max(var(--gutter), env(safe-area-inset-right)); }
+
+    /* Soft paper grain */
+    body::after {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 999; opacity: .035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+    .top-bar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: calc(var(--header-h) + var(--safe-top)); padding-top: var(--safe-top);
+      display: flex; align-items: center;
+      background: rgba(251, 243, 239, .86);
+      backdrop-filter: blur(14px) saturate(1.2); -webkit-backdrop-filter: blur(14px) saturate(1.2);
+      border-bottom: 1px solid var(--line);
+    }
+    .top-bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+
+    .logo { text-decoration: none; display: flex; align-items: center; gap: .7rem; line-height: 1; }
+    .logo-mark { width: 38px; height: 38px; flex: none; }
+    .logo strong {
+      display: block; font-family: var(--display); font-weight: 700; font-size: 1.4rem; letter-spacing: .005em;
+      font-variation-settings: "SOFT" 100, "WONK" 1;
+    }
+    .logo strong em { font-style: italic; font-weight: 400; color: var(--rose); }
+    .logo small { display: block; font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: 5px; }
+
+    .top-nav { display: flex; align-items: center; gap: .3rem; }
+    .top-nav > a, .top-nav .dd-toggle {
+      text-decoration: none; font-size: .95rem; font-weight: 500;
+      padding: .5rem .95rem; border-radius: 999px; color: var(--muted);
+      background: none; border: 0; cursor: pointer;
+      display: inline-flex; align-items: center; gap: .35rem;
+      transition: color .2s, background .2s;
+    }
+    .top-nav > a:hover, .top-nav .dd-toggle:hover { color: var(--ink); background: rgba(192,98,125,.07); }
+    .top-nav > a[aria-current="page"], .top-nav .dd-toggle.current { color: #fff; background: var(--rose); }
+    .dd-toggle svg { width: 14px; height: 14px; transition: transform .2s; }
+    .dd-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+    .dropdown { position: relative; }
+    .dd-menu {
+      position: absolute; top: calc(100% + 10px); right: 0; min-width: 220px;
+      background: var(--bg-2); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow);
+      padding: .45rem; display: grid; gap: 2px;
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: opacity .18s, transform .18s, visibility .18s;
+    }
+    .dd-menu.open { opacity: 1; visibility: visible; transform: none; }
+    .dd-menu a {
+      text-decoration: none; padding: .6rem .85rem; border-radius: 12px; font-size: .95rem;
+      display: flex; align-items: center; gap: .65rem; color: var(--ink);
+    }
+    .dd-menu a:hover, .dd-menu a[aria-current="page"] { background: var(--bg-3); }
+    .dd-menu a span.ic { width: 28px; height: 28px; border-radius: 9px; background: var(--blush); display: grid; place-items: center; font-size: .9rem; }
+
+    .hamburger {
+      display: none; width: 46px; height: 46px; border-radius: 50%;
+      background: var(--bg-2); border: 1px solid var(--line); cursor: pointer;
+      align-items: center; justify-content: center; flex-direction: column; gap: 5px;
+    }
+    .hamburger span { display: block; width: 18px; height: 2px; background: var(--ink); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .side-nav {
+      position: fixed; inset: 0; z-index: 90; overflow-y: auto;
+      background: var(--bg);
+      padding: calc(var(--header-h) + var(--safe-top) + 1.5rem) var(--gutter) calc(2rem + env(safe-area-inset-bottom));
+      display: flex; flex-direction: column;
+      opacity: 0; visibility: hidden; transform: translateY(-12px);
+      transition: opacity .25s ease, transform .25s ease, visibility .25s;
+    }
+    .side-nav.open { opacity: 1; visibility: visible; transform: none; }
+    .side-nav .nav-link {
+      font-family: var(--display); font-size: 2.3rem; font-weight: 600; text-decoration: none; text-align: left;
+      padding: .45rem 0; color: var(--ink); font-variation-settings: "SOFT" 100;
+      border: 0; border-bottom: 1px solid var(--line); background: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; width: 100%;
+    }
+    .side-nav .nav-link[aria-current="page"], .side-nav .nav-link.current { color: var(--rose); font-style: italic; }
+    .side-nav .nav-link svg { width: 22px; height: 22px; transition: transform .25s; color: var(--muted); }
+    .side-nav .nav-link[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .side-sub { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+    .side-sub.open { grid-template-rows: 1fr; }
+    .side-sub > div { overflow: hidden; display: flex; flex-wrap: wrap; gap: .5rem; }
+    .side-sub.open > div { padding: .9rem 0 .4rem; }
+    .side-sub a {
+      text-decoration: none; padding: .6rem 1rem; border-radius: 999px; background: var(--bg-2);
+      border: 1px solid var(--line); font-weight: 500; font-size: 1rem;
+    }
+    .side-sub a[aria-current="page"] { background: var(--rose); color: #fff; border-color: var(--rose); }
+    .side-note { margin-top: auto; padding-top: 2rem; color: var(--muted); font-size: .9rem; }
+
+    /* =========================================================
+       VIEWS (one page, swapped by the URL #hash)
+       ========================================================= */
+    main { flex: 1; overflow-x: clip; }
+    .view { display: none; }
+    .view.active { display: block; animation: viewIn .5s cubic-bezier(.2,.7,.2,1); }
+    @keyframes viewIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+    .page-top { padding-top: calc(var(--header-h) + var(--safe-top) + clamp(1.75rem, 5vw, 4rem)); padding-bottom: clamp(3rem, 8vw, 6rem); }
+
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-size: .76rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--rose);
+      margin: 0 0 .9rem;
+    }
+    .eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+
+    h1, h2, h3, h4 { font-family: var(--display); font-variation-settings: "SOFT" 100, "WONK" 1; line-height: 1.05; margin: 0; letter-spacing: -.01em; font-weight: 600; }
+    .page-title { font-size: clamp(2.6rem, 8vw, 5.4rem); font-weight: 700; margin-bottom: 1rem; }
+    .page-title em { font-style: italic; font-weight: 400; color: var(--rose); }
+    .lede { font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: var(--muted); max-width: 62ch; margin: 0; }
+    .section-title { font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: .6rem; }
+    .section-title em { font-style: italic; font-weight: 400; color: var(--rose); }
+
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      text-decoration: none; font-weight: 600; font-size: .95rem; min-height: 44px;
+      padding: .7rem 1.25rem; border-radius: 999px; border: 1.5px solid transparent;
+      cursor: pointer; transition: transform .15s ease, background .2s, color .2s, border-color .2s;
+    }
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: var(--rose); color: #fff; }
+    .btn-primary:hover { background: #ad506b; }
+    .btn-ghost { border-color: var(--line); background: var(--bg-2); }
+    .btn-ghost:hover { border-color: var(--rose-2); }
+
+    .chips { display: flex; gap: .45rem; flex-wrap: wrap; }
+    .chip {
+      border: 1px solid var(--line); background: var(--bg-2); padding: .5rem 1rem; min-height: 40px;
+      border-radius: 999px; font-size: .92rem; font-weight: 500; cursor: pointer; color: var(--muted);
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .chip:hover { color: var(--ink); }
+    .chip[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    /* Floating petals / dots */
+    .petals { position: absolute; pointer-events: none; opacity: .9; }
+
+    /* =========================================================
+       TIMELINE
+       ========================================================= */
+    .tl-hero { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: center; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+    .tl-hero .petals { right: -6%; top: -30%; width: min(46vw, 520px); aspect-ratio: 1; z-index: -1; }
+    .tl-hero-copy { position: relative; }
+
+    .due-card { padding: clamp(1.25rem, 3vw, 1.9rem); position: relative; overflow: hidden; }
+    .due-card::before {
+      content: ""; position: absolute; width: 240px; height: 240px; border-radius: 50%;
+      background: radial-gradient(circle, var(--blush), transparent 70%); right: -80px; top: -90px;
+    }
+    .due-card > * { position: relative; }
+    .due-label { font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .25rem; }
+    .due-week { font-family: var(--display); font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 700; line-height: 1; font-variation-settings: "SOFT" 100, "WONK" 1; }
+    .due-week em { font-style: italic; font-weight: 400; color: var(--rose); font-size: .55em; }
+    .due-sub { color: var(--muted); margin: .4rem 0 1rem; }
+    .progress { height: 12px; border-radius: 99px; background: var(--bg-3); overflow: hidden; position: relative; }
+    .progress > span { position: absolute; inset: 0 auto 0 0; border-radius: 99px; background: linear-gradient(90deg, var(--rose-2), var(--rose)); transition: width .8s cubic-bezier(.2,.7,.2,1); }
+    .progress-marks { position: relative; height: 1.1rem; font-size: .72rem; color: var(--muted); margin-top: .4rem; letter-spacing: .04em; }
+    .progress-marks span { position: absolute; top: 0; transform: translateX(-50%); }
+    .progress-marks span:first-child { transform: none; } .progress-marks span:last-child { transform: translateX(-100%); }
+    .due-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin: 1.1rem 0; }
+    .due-stats div { background: var(--bg); border-radius: 14px; padding: .65rem .75rem; }
+    .due-stats b { display: block; font-family: var(--display); font-size: 1.35rem; line-height: 1.1; }
+    .due-stats small { color: var(--muted); font-size: .76rem; }
+    .due-form { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; border-top: 1px dashed var(--line); padding-top: 1rem; }
+    .due-form .seg { display: inline-flex; background: var(--bg); border-radius: 999px; padding: 3px; }
+    .due-form .seg button { border: 0; background: none; padding: .45rem .8rem; border-radius: 999px; font-size: .82rem; font-weight: 600; color: var(--muted); cursor: pointer; }
+    .due-form .seg button[aria-pressed="true"] { background: var(--bg-2); color: var(--ink); box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .due-form input[type="date"] {
+      font: inherit; font-size: 16px; /* 16px stops iPhone zooming in */
+      border: 1px solid var(--line); border-radius: 12px; padding: .55rem .75rem; background: var(--bg-2); color: var(--ink);
+      min-height: 44px; flex: 1 1 160px; -webkit-appearance: none; appearance: none;
+    }
+    .due-empty { color: var(--muted); }
+
+    .tl-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+
+    .timeline { position: relative; display: grid; gap: 1.1rem; padding-left: 42px; }
+    .timeline::before {
+      content: ""; position: absolute; left: 14px; top: 8px; bottom: 8px; width: 2px;
+      background: linear-gradient(var(--blush), var(--rose-2) 50%, var(--lilac));
+      border-radius: 2px;
+    }
+    .tri-head { position: relative; margin: 1.5rem 0 .2rem; }
+    .tri-head:first-child { margin-top: 0; }
+    .tri-head::before {
+      content: ""; position: absolute; left: -36px; top: 50%; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--rose);
+    }
+    .tri-head h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); }
+    .tri-head h3 em { font-style: italic; font-weight: 400; color: var(--rose); }
+    .tri-head p { margin: .2rem 0 0; color: var(--muted); font-size: .95rem; }
+
+    .tl-item { position: relative; padding: clamp(1.1rem, 2.4vw, 1.6rem); scroll-margin-top: calc(var(--header-h) + var(--safe-top) + 20px); }
+    .tl-item::before {
+      content: ""; position: absolute; left: -33px; top: 30px; width: 12px; height: 12px; border-radius: 50%;
+      background: var(--rose-2); box-shadow: 0 0 0 5px var(--bg);
+    }
+    .tl-item.now { border: 2px solid var(--rose); }
+    .tl-item.now::before { background: var(--rose); width: 16px; height: 16px; left: -35px; top: 28px; box-shadow: 0 0 0 5px var(--bg), 0 0 0 9px rgba(192,98,125,.2); animation: pulse 2.4s ease-in-out infinite; }
+    @keyframes pulse { 50% { box-shadow: 0 0 0 5px var(--bg), 0 0 0 14px rgba(192,98,125,.08); } }
+    .tl-item.past { opacity: .78; }
+    .tl-item.past::before { background: var(--rose); }
+
+    .tl-head { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .tl-size {
+      flex: none; width: 64px; height: 64px; border-radius: 18px; background: var(--bg-3);
+      display: grid; place-items: center; font-size: 2rem; line-height: 1;
+    }
+    .tl-weeks { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin: 0 0 .2rem; }
+    .tl-weeks .pill { font-size: .74rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--rose); }
+    .tl-weeks .now-badge { font-size: .72rem; font-weight: 600; background: var(--rose); color: #fff; padding: .15rem .6rem; border-radius: 99px; letter-spacing: .04em; }
+    .tl-head h4 { font-size: clamp(1.3rem, 2.6vw, 1.75rem); }
+    .tl-head .size-line { color: var(--muted); font-size: .93rem; margin: .25rem 0 0; }
+
+    .tl-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .tl-col { background: var(--bg); border-radius: 16px; padding: .95rem 1.05rem; }
+    .tl-col h5 { margin: 0 0 .45rem; font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: .45rem; }
+    .tl-col h5 i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .tl-col.baby h5 { color: var(--rose); } .tl-col.baby h5 i { background: var(--rose); }
+    .tl-col.mum h5 { color: #8b6fb0; } .tl-col.mum h5 i { background: var(--lilac); }
+    .tl-col.todo h5 { color: var(--sage); } .tl-col.todo h5 i { background: var(--sage); }
+    .tl-col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .4rem; font-size: .95rem; }
+    .tl-col li { position: relative; padding-left: 1rem; line-height: 1.45; }
+    .tl-col li::before { content: ""; position: absolute; left: 0; top: .58em; width: 5px; height: 5px; border-radius: 50%; background: var(--rose-2); }
+    .tl-col.todo li::before { background: var(--sage); }
+    .tl-col.mum li::before { background: var(--lilac); }
+
+    .jump-now { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50; box-shadow: var(--shadow); }
+    .jump-now[hidden] { display: none; }
+
+    /* =========================================================
+       FOOD
+       ========================================================= */
+    .food-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.6rem, 2vw, 1.75rem); align-items: start; margin-top: clamp(2rem, 5vw, 3rem); }
+    .food-col { border-radius: 24px; padding: clamp(.75rem, 2.2vw, 1.75rem); }
+    .food-col.eat { background: var(--sage-bg); }
+    .food-col.avoid { background: var(--clay-bg); }
+    .food-col-head { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
+    .food-col-head .badge { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; flex: none; }
+    .food-col-head .badge svg { width: 24px; height: 24px; }
+    .eat .badge { background: var(--sage); }
+    .avoid .badge { background: var(--clay); }
+    .food-col-head h2 { font-size: clamp(1.25rem, 3.6vw, 2rem); }
+    .food-col-head p { margin: .15rem 0 0; font-size: .85rem; color: var(--muted); }
+    .food-list { display: grid; gap: .55rem; }
+    .food-item { background: rgba(255,255,255,.82); border-radius: 16px; padding: .8rem .95rem; display: flex; gap: .75rem; align-items: flex-start; }
+    .food-item .em { font-size: 1.5rem; line-height: 1.2; flex: none; }
+    .food-item b { display: block; font-weight: 600; line-height: 1.3; }
+    .food-item span { display: block; font-size: .88rem; color: var(--muted); line-height: 1.45; margin-top: .15rem; }
+    .food-item .safe { display: inline-block; margin-top: .4rem; font-size: .76rem; font-weight: 600; color: var(--sage); background: var(--sage-bg); padding: .15rem .55rem; border-radius: 99px; font-style: normal; }
+
+    .numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: clamp(2rem, 5vw, 3rem); }
+    .num { padding: 1.25rem; }
+    .num .big { font-family: var(--display); font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; color: var(--rose); line-height: 1; font-variation-settings: "SOFT" 100, "WONK" 1; }
+    .num h4 { font-size: 1.1rem; margin: .5rem 0 .3rem; }
+    .num p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    /* =========================================================
+       HOSPITAL
+       ========================================================= */
+    .callout {
+      display: flex; gap: 1rem; padding: clamp(1.1rem, 3vw, 1.6rem); border-radius: var(--radius);
+      background: linear-gradient(120deg, #fff4e6, #fbe4e7); border: 1px solid rgba(214,161,91,.35); margin-top: 2rem;
+    }
+    .callout .ic { flex: none; width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: #fff; display: grid; place-items: center; font-size: 1.3rem; }
+    .callout h3 { font-size: 1.35rem; margin-bottom: .35rem; }
+    .callout p { margin: 0; }
+    .callout ul { margin: .6rem 0 0; padding-left: 1.1rem; }
+
+    .vs { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 1.75rem); margin-top: clamp(2rem, 5vw, 3rem); }
+    .vs-card { padding: clamp(1.25rem, 3vw, 2rem); position: relative; overflow: hidden; }
+    .vs-card .tag { display: inline-block; font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 99px; margin-bottom: .9rem; }
+    .vs-card.private .tag { background: var(--blush); color: var(--rose); }
+    .vs-card.public .tag { background: #ebe4f3; color: #7a5ea3; }
+    .vs-card h3 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin-bottom: .4rem; }
+    .vs-card > p { color: var(--muted); margin: 0 0 1.2rem; }
+    .pc h4 { font-family: var(--body); font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin: 1.1rem 0 .5rem; }
+    .pc ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+    .pc li { display: flex; gap: .6rem; align-items: flex-start; line-height: 1.45; }
+    .pc li::before { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: .75rem; font-weight: 700; margin-top: .1rem; }
+    .pc .pros h4 { color: var(--sage); }
+    .pc .pros li::before { content: "✓"; background: var(--sage-bg); color: var(--sage); }
+    .pc .cons h4 { color: var(--clay); }
+    .pc .cons li::before { content: "–"; background: var(--clay-bg); color: var(--clay); }
+    .cost { margin-top: 1.3rem; padding: 1rem; border-radius: 14px; background: var(--bg); }
+    .cost b { font-family: var(--display); font-size: 1.5rem; display: block; line-height: 1.1; }
+    .cost small { color: var(--muted); }
+
+    .hybrid { margin-top: clamp(1rem, 2.5vw, 1.75rem); padding: clamp(1.25rem, 3vw, 2rem); display: grid; grid-template-columns: auto 1fr; gap: 1.25rem; align-items: start; }
+    .hybrid .ic { width: 52px; height: 52px; border-radius: 16px; background: var(--sage-bg); color: var(--sage); display: grid; place-items: center; font-size: 1.5rem; }
+    .hybrid h3 { font-size: 1.5rem; margin-bottom: .35rem; }
+    .hybrid p { margin: 0; color: var(--muted); }
+
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 2.5vw, 1.75rem); margin-top: clamp(2.5rem, 6vw, 4rem); }
+    .checklist { padding: clamp(1.25rem, 3vw, 2rem); }
+    .checklist h3 { font-size: 1.5rem; margin-bottom: .25rem; }
+    .checklist > p { color: var(--muted); margin: 0 0 1rem; font-size: .95rem; }
+    .checklist label {
+      display: flex; gap: .75rem; align-items: flex-start; padding: .7rem .2rem; border-bottom: 1px solid var(--line); cursor: pointer; line-height: 1.45;
+    }
+    .checklist label:last-child { border-bottom: 0; }
+    .checklist input { appearance: none; -webkit-appearance: none; flex: none; width: 24px; height: 24px; border-radius: 8px; border: 2px solid var(--rose-2); margin: 0; cursor: pointer; display: grid; place-items: center; background: var(--bg-2); }
+    .checklist input:checked { background: var(--rose); border-color: var(--rose); }
+    .checklist input:checked::after { content: ""; width: 10px; height: 6px; border: 2.5px solid #fff; border-top: 0; border-right: 0; transform: rotate(-45deg) translate(1px, -1px); }
+    .checklist input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--rose-2); }
+
+    /* =========================================================
+       LEARN
+       ========================================================= */
+    .subtabs { position: sticky; top: calc(var(--header-h) + var(--safe-top)); z-index: 20; background: var(--bg); padding: 1rem 0; margin: 1.5rem 0 1rem; border-bottom: 1px solid var(--line); }
+    .subtabs .chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter); }
+    .subtabs .chips::-webkit-scrollbar { display: none; }
+    .subtabs .chip { flex: none; display: inline-flex; align-items: center; gap: .4rem; text-decoration: none; }
+    .learn-intro { color: var(--muted); margin: 0 0 1.5rem; max-width: 60ch; }
+    .res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+    .res { padding: 1.3rem; display: flex; flex-direction: column; gap: .4rem; text-decoration: none; transition: transform .2s, border-color .2s; }
+    .res:hover { transform: translateY(-3px); border-color: var(--rose-2); }
+    .res-top { display: flex; align-items: center; gap: .75rem; margin-bottom: .3rem; }
+    .res-ic { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; font-size: 1.4rem; flex: none; }
+    .res-kind { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--rose); }
+    .res h4 { font-size: 1.3rem; }
+    .res .by { color: var(--muted); font-size: .9rem; margin: 0; }
+    .res p.why { margin: .2rem 0 0; font-size: .95rem; line-height: 1.5; flex: 1; }
+    .res .go { margin-top: .6rem; font-size: .88rem; font-weight: 600; color: var(--rose); display: inline-flex; align-items: center; gap: .3rem; }
+    .res .aus { display: inline-block; font-size: .7rem; font-weight: 600; padding: .1rem .5rem; border-radius: 99px; background: #fff4e6; color: #a8732e; margin-left: .35rem; vertical-align: middle; letter-spacing: .02em; }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .site-footer { border-top: 1px solid var(--line); padding: 2rem 0 calc(2rem + env(safe-area-inset-bottom)); color: var(--muted); font-size: .9rem; }
+    .site-footer .wrap { display: flex; justify-content: space-between; gap: 1rem 2rem; flex-wrap: wrap; }
+    .site-footer p { margin: 0; max-width: 70ch; }
+    .site-footer a { color: var(--rose); }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 1100px) {
+      .numbers { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 980px) {
+      .tl-cols { grid-template-columns: 1fr; gap: .6rem; }
+    }
+    @media (max-width: 900px) {
+      .top-nav { display: none; }
+      .hamburger { display: flex; }
+      .tl-hero { grid-template-columns: 1fr; }
+      .tl-hero .petals { width: 70vw; right: -24vw; top: -12%; opacity: .45; }
+      .vs, .two { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      :root { --header-h: 64px; }
+      .logo-mark { width: 34px; height: 34px; }
+      .logo strong { font-size: 1.25rem; }
+      .timeline { padding-left: 28px; }
+      .timeline::before { left: 7px; }
+      .tri-head::before { left: -29px; width: 16px; height: 16px; margin-top: -8px; }
+      .tl-item::before { left: -26px; top: 26px; }
+      .tl-item.now::before { left: -28px; top: 24px; }
+      .tl-size { width: 52px; height: 52px; font-size: 1.6rem; border-radius: 15px; }
+      .tl-head { gap: .8rem; }
+      .food-col { border-radius: 18px; }
+      .food-col-head { flex-direction: column; align-items: flex-start; gap: .5rem; }
+      .food-col-head .badge { width: 38px; height: 38px; }
+      .food-col-head p { display: none; }
+      .food-item { flex-direction: column; gap: .2rem; padding: .7rem; border-radius: 13px; }
+      .food-item .em { font-size: 1.3rem; }
+      .food-item b { font-size: .92rem; }
+      .food-item span { font-size: .8rem; }
+      .numbers { grid-template-columns: 1fr; }
+      .jump-now { min-height: 40px; padding: .5rem 1rem; font-size: .88rem; }
+      .due-stats b { font-size: 1.15rem; }
+      .hybrid { grid-template-columns: 1fr; }
+      .callout { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =====================================================
+       HEADER — links use #hash so everything stays on this page
+       ===================================================== -->
+  <header class="top-bar" id="topBar">
+    <div class="wrap">
+      <a href="#timeline" class="logo" aria-label="Laura and Bump — home">
+        <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#f4d9dc"/><path d="M32 47s-14-8.6-14-18.2C18 23.4 22 20 26.3 20c2.7 0 4.6 1.4 5.7 3.3 1.1-1.9 3-3.3 5.7-3.3C42 20 46 23.4 46 28.8 46 38.4 32 47 32 47Z" fill="#c0627d"/></svg>
+        <span>
+          <strong>Laura <em>&amp;</em> Bump</strong>
+          <small>Our little one</small>
+        </span>
+      </a>
+
+      <nav class="top-nav" aria-label="Main">
+        <a href="#timeline" data-view-link>Timeline</a>
+        <a href="#food" data-view-link>Food</a>
+        <a href="#hospital" data-view-link>Hospital</a>
+        <div class="dropdown">
+          <button class="dd-toggle" id="learnToggle" aria-expanded="false" aria-controls="learnMenu">
+            Learn
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="dd-menu" id="learnMenu" data-learn-links></div>
+        </div>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="sideNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <aside class="side-nav" id="sideNav" aria-label="Mobile">
+    <a class="nav-link" href="#timeline" data-view-link>Timeline</a>
+    <a class="nav-link" href="#food" data-view-link>Food</a>
+    <a class="nav-link" href="#hospital" data-view-link>Hospital</a>
+    <button class="nav-link" id="sideLearnToggle" aria-expanded="false" aria-controls="sideLearn">
+      Learn
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="side-sub" id="sideLearn"><div data-learn-links></div></div>
+    <p class="side-note">Made with love for Laura 💗</p>
+  </aside>
+
+  <main>
+    <!-- =====================================================
+         VIEW: TIMELINE
+         ===================================================== -->
+    <section class="view" id="view-timeline" data-title="Timeline — Laura &amp; Bump">
+      <div class="wrap page-top">
+        <div class="tl-hero">
+          <div class="petals" data-dots="90" aria-hidden="true"></div>
+          <div class="tl-hero-copy">
+            <p class="eyebrow">We're having a baby</p>
+            <h1 class="page-title">Hello, <em>little one.</em></h1>
+            <p class="lede">Forty weeks, two weeks at a time. What's happening with baby, what Laura might be feeling, and the little jobs to tick off along the way.</p>
+          </div>
+
+          <div class="card due-card" id="dueCard">
+            <p class="due-label">Right now</p>
+            <div id="dueOut"></div>
+            <form class="due-form" id="dueForm">
+              <div class="seg" role="group" aria-label="Date type">
+                <button type="button" data-mode="due" aria-pressed="true">Due date</button>
+                <button type="button" data-mode="lmp" aria-pressed="false">Last period</button>
+              </div>
+              <input type="date" id="dueInput" aria-label="Date" />
+            </form>
+          </div>
+        </div>
+
+        <div class="tl-toolbar">
+          <div>
+            <h2 class="section-title">Week by <em>week</em></h2>
+          </div>
+          <div class="chips" role="group" aria-label="Filter by trimester">
+            <button class="chip" data-tri="all" aria-pressed="true">All</button>
+            <button class="chip" data-tri="1" aria-pressed="false">1st trimester</button>
+            <button class="chip" data-tri="2" aria-pressed="false">2nd</button>
+            <button class="chip" data-tri="3" aria-pressed="false">3rd</button>
+          </div>
+        </div>
+
+        <div class="timeline" id="timeline"></div>
+      </div>
+      <a class="btn btn-primary jump-now" id="jumpNow" href="#timeline" hidden>📍 This week</a>
+    </section>
+
+    <!-- =====================================================
+         VIEW: FOOD
+         ===================================================== -->
+    <section class="view" id="view-food" data-title="Food — Laura &amp; Bump">
+      <div class="wrap page-top">
+        <p class="eyebrow">Eating for two</p>
+        <h1 class="page-title">Good food, <em>safe food.</em></h1>
+        <p class="lede">Most of the "avoid" list is about a few bugs (listeria, salmonella, toxoplasma) and mercury. Freshly cooked and eaten hot is almost always fine.</p>
+
+        <div class="food-grid">
+          <div class="food-col eat">
+            <div class="food-col-head">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+              <div><h2>Eat &amp; enjoy</h2><p>The good stuff for you and bub</p></div>
+            </div>
+            <div class="food-list" id="eatList"></div>
+          </div>
+          <div class="food-col avoid">
+            <div class="food-col-head">
+              <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg></span>
+              <div><h2>Best avoided</h2><p>Skip these until baby's here</p></div>
+            </div>
+            <div class="food-list" id="avoidList"></div>
+          </div>
+        </div>
+
+        <div class="numbers">
+          <div class="card num"><div class="big">200mg</div><h4>Caffeine a day, max</h4><p>About 1–2 espressos, 3 instant coffees or 4 cups of tea. No energy drinks or double shots.</p></div>
+          <div class="card num"><div class="big">0</div><h4>Alcohol</h4><p>There's no known safe amount in pregnancy. Kombucha, kefir and ginger beer have a little too.</p></div>
+          <div class="card num"><div class="big">2–3</div><h4>Serves of fish a week</h4><p>Low-mercury fish like salmon, sardines and tuna, cooked. Shark (flake), swordfish and marlin: 150g a fortnight, max.</p></div>
+          <div class="card num"><div class="big">400 + 150</div><h4>Folic acid &amp; iodine (mcg)</h4><p>A daily pregnancy supplement with at least 400mcg folic acid and 150mcg iodine. Ask the GP which one.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         VIEW: HOSPITAL
+         ===================================================== -->
+    <section class="view" id="view-hospital" data-title="Private or public? — Laura &amp; Bump">
+      <div class="wrap page-top">
+        <p class="eyebrow">Where we'll meet baby</p>
+        <h1 class="page-title">Private or <em>public?</em></h1>
+        <p class="lede">Both are safe, good options in Australia. It mostly comes down to who you want looking after you, what you're happy to spend, and how you'd like the experience to feel.</p>
+
+        <div class="callout">
+          <div class="ic">★</div>
+          <div>
+            <h3>We have private health — check these first</h3>
+            <p>Being insured doesn't automatically mean the birth is covered. Ring the fund and ask:</p>
+            <ul>
+              <li><b>Does our hospital cover include pregnancy &amp; birth?</b> It's usually only on Gold-tier hospital policies.</li>
+              <li><b>Will we have served the 12-month waiting period</b> by the date Laura is admitted? If baby comes even a few days before it ends, the birth isn't covered.</li>
+              <li><b>What's our excess</b>, and which hospitals and obstetricians have "no gap" or known-gap deals with the fund?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="vs">
+          <article class="card vs-card private">
+            <span class="tag">Private</span>
+            <h3>Your own obstetrician</h3>
+            <p>You choose an obstetrician who sees you through pregnancy and (usually) delivers baby at the private hospital they work from.</p>
+            <div class="pc">
+              <div class="pros">
+                <h4>The nice bits</h4>
+                <ul>
+                  <li>The same doctor the whole way through — someone who knows your story</li>
+                  <li>Usually a private room, and often Grant can stay overnight</li>
+                  <li>Nicer food, quieter wards and often a longer stay after the birth</li>
+                  <li>Choice of which obstetrician and hospital</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>Worth knowing</h4>
+                <ul>
+                  <li>Bigger out-of-pocket costs, mostly the obstetrician's fee</li>
+                  <li>Your obstetrician might not be on call the day baby arrives</li>
+                  <li>Higher rates of interventions (like inductions and caesareans) on average</li>
+                  <li>If baby needs intensive care, you might be transferred to a public hospital</li>
+                  <li>Popular obstetricians book out early — get in quick</li>
+                </ul>
+              </div>
+            </div>
+            <div class="cost"><b>~$1,250 – $4,550+</b><small>Typical obstetrician management fee out of pocket, plus around $400–$500 for the birth and your hospital excess. Scans, bloods, the anaesthetist and paediatrician can add more.</small></div>
+          </article>
+
+          <article class="card vs-card public">
+            <span class="tag">Public</span>
+            <h3>Midwives &amp; the hospital team</h3>
+            <p>Care through your local public hospital — with midwives, hospital doctors, or shared with your GP. Covered by Medicare.</p>
+            <div class="pc">
+              <div class="pros">
+                <h4>The nice bits</h4>
+                <ul>
+                  <li>Little to no out-of-pocket cost</li>
+                  <li>Big public hospitals have the best set-ups for complications and sick babies (NICU)</li>
+                  <li>Midwifery continuity programs (a known midwife or small team) — lovely if you can get in</li>
+                  <li>Lower rates of interventions on average</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>Worth knowing</h4>
+                <ul>
+                  <li>You may meet different midwives and doctors at each visit and at the birth</li>
+                  <li>Shared rooms are common, and partners often can't stay overnight</li>
+                  <li>Shorter stays after the birth</li>
+                  <li>Less choice over who is in the room; junior doctors may attend first</li>
+                  <li>Midwife programs fill fast — ask to be put down early</li>
+                </ul>
+              </div>
+            </div>
+            <div class="cost"><b>~$0 – a few hundred</b><small>Hospital care is free. You may pay for some scans, pathology, a non-bulk-billing GP (if doing shared care) and birth classes.</small></div>
+          </article>
+        </div>
+
+        <div class="card hybrid">
+          <div class="ic">✦</div>
+          <div>
+            <h3>The in-between: private patient in a public hospital</h3>
+            <p>Some public hospitals let you use your private cover. You get public-hospital safety nets (like NICU on site), sometimes a better chance at a private room, and little or no gap. You won't usually get to choose your own obstetrician, though some hospitals have private obstetricians who deliver there. Worth asking the hospital and the fund.</p>
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="card checklist" data-checklist="hospital-fund">
+            <h3>Questions for the health fund</h3>
+            <p>Ticks are saved on this device.</p>
+          </div>
+          <div class="card checklist" data-checklist="hospital-ob">
+            <h3>Questions for an obstetrician or hospital</h3>
+            <p>Bring these to the first appointment or tour.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         VIEW: LEARN (with sub-tabs)
+         ===================================================== -->
+    <section class="view" id="view-learn" data-title="Learn — Laura &amp; Bump">
+      <div class="wrap page-top">
+        <p class="eyebrow">Reading, listening, watching</p>
+        <h1 class="page-title">Things to <em>learn.</em></h1>
+        <p class="lede">Hand-picked books, podcasts, channels, websites and apps. Aussie ones are marked so you know the advice fits here.</p>
+
+        <div class="subtabs">
+          <div class="chips" id="learnTabs" role="tablist" aria-label="Learn categories"></div>
+        </div>
+        <p class="learn-intro" id="learnIntro"></p>
+        <div class="res-grid" id="learnGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Made with love for Laura 💗 · This is general information only — always check with your GP, midwife or obstetrician. Questions any time: <a href="tel:1800882436">Pregnancy, Birth &amp; Baby — 1800 882 436</a>.</p>
+      <p>© <span id="year">2026</span></p>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       SETTINGS
+       DUE_DATE: put Laura's due date here ("2027-07-14") so it shows on every phone.
+                 Leave as "" to type it in on the page instead (saved on that device).
+       ========================================================= */
+    const DUE_DATE = "";
+
+    const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const store = {
+      get(k) { try { return JSON.parse(localStorage.getItem("lb:" + k)); } catch (e) { return null; } },
+      set(k, v) { try { localStorage.setItem("lb:" + k, JSON.stringify(v)); } catch (e) {} }
+    };
+
+    /* ---------- Timeline ----------
+       Two-week blocks. To change one, edit its text below.
+       baby / mum / todo are lists — add or remove lines as you like. */
+    const TIMELINE = [
+      { w: [1, 2], em: "🌸", size: "Not quite yet", title: "Getting ready",
+        baby: ["Pregnancy is counted from the first day of the last period — so baby isn't here yet!", "An egg is maturing, ready to be released around day 14"],
+        mum: ["A normal period, then ovulation towards the end of week 2"],
+        todo: ["Start a pregnancy supplement with folic acid (400mcg) and iodine (150mcg)", "Cut out alcohol and smoking"] },
+      { w: [3, 4], em: "✨", size: "A poppy seed · about 1mm", title: "Hello, tiny ball of cells",
+        baby: ["Egg meets sperm, then travels down to the uterus", "A tiny ball of cells (blastocyst) snuggles into the uterus lining", "The placenta starts forming"],
+        mum: ["Maybe a little spotting as baby implants", "Pregnancy hormone (hCG) rises — a positive test around the missed period 🎉"],
+        todo: ["Book in with the GP to confirm", "Check any medicines with the GP or pharmacist", "Keep up folic acid and iodine"] },
+      { w: [5, 6], em: "🫘", size: "A lentil · about 2–6mm", title: "A heartbeat begins",
+        baby: ["The heart starts to beat — sometimes seen as a flicker on an early scan", "Brain and spinal cord (neural tube) are forming", "Little buds appear that will become arms and legs"],
+        mum: ["Tired, tender boobs and needing to wee more", "Nausea may start (it can happen any time of day)"],
+        todo: ["GP visit: bloods, referrals and talk about where to have baby", "Going private? Pick an obstetrician and book early", "Call the health fund — pregnancy cover & the 12-month wait"] },
+      { w: [7, 8], em: "🫐", size: "A blueberry → raspberry · about 1–1.6cm", title: "Fingers and a face",
+        baby: ["Officially an embryo — the face, eyes and ears are taking shape", "Fingers and toes begin as tiny webbed paddles", "All the major organs have started forming"],
+        mum: ["Morning sickness often peaks around weeks 8–10", "Strong sense of smell, food aversions or cravings"],
+        todo: ["First booking visit with the obstetrician or midwife", "Small, frequent meals and ginger can help nausea", "Can't keep fluids down? See the GP — it's treatable"] },
+      { w: [9, 10], em: "🫒", size: "An olive → kumquat · about 2.5–3cm", title: "Now a fetus",
+        baby: ["From week 10 baby is called a fetus", "Fingers and toes have separated", "Tiny wriggles start — far too small to feel yet"],
+        mum: ["Bloating, mood swings and a slightly thicker waist", "Still tired — rest when you can"],
+        todo: ["NIPT (a screening blood test) is available from 10 weeks — optional, and usually has a cost", "Talk through screening options with your care provider"] },
+      { w: [11, 12], em: "🍋", size: "A lime → plum · about 4–6cm", title: "Fully formed, just tiny",
+        baby: ["All the organs are formed — now they grow and mature", "Baby can open and close their fists", "Bones are starting to harden"],
+        mum: ["Nausea often starts easing towards the end of this block", "The chance of miscarriage drops a lot after 12 weeks"],
+        todo: ["The 12-week scan (between 11 and 13+6 weeks)", "Many couples share the news around now 💕", "Flu vaccine — recommended in any trimester"] },
+      { w: [13, 14], em: "🍑", size: "A peach · about 7–9cm", title: "Hello, second trimester",
+        baby: ["Can squint, frown and maybe suck a thumb", "Soft fine hair (lanugo) starts growing"],
+        mum: ["Energy often comes back — the 'honeymoon' trimester", "Appetite returns"],
+        todo: ["Tell work when ready and start planning parental leave", "Look up antenatal classes — some book out early"] },
+      { w: [15, 16], em: "🥑", size: "An avocado · about 10–12cm", title: "Baby can hear",
+        baby: ["Can hear muffled sounds — including your voices", "Skeleton is hardening", "Can sense light through the belly"],
+        mum: ["First flutters (quickening) can come anywhere from 16–22 weeks", "Some 'round ligament' twinges as the uterus grows"],
+        todo: ["Routine check-up", "Comfy maternity clothes shopping 🛍️", "Gentle exercise: walks, swimming, pregnancy yoga or pilates"] },
+      { w: [17, 18], em: "🍠", size: "A sweet potato · about 13–14cm", title: "Little fat layers",
+        baby: ["Fat starts building under the skin", "Ears are in their final position", "Practising swallowing"],
+        mum: ["The bump is showing", "Back aches and the odd dizzy spell — stand up slowly"],
+        todo: ["Book the morphology scan for 18–20 weeks", "Decide if you want to find out boy or girl"] },
+      { w: [19, 20], em: "🍌", size: "A banana · about 25cm head to toe", title: "Halfway there!",
+        baby: ["A creamy coating (vernix) protects their skin", "Regular sleeping and waking times", "Kicks are getting stronger"],
+        mum: ["Top of the uterus reaches the belly button", "Grant may feel kicks from the outside soon"],
+        todo: ["The morphology scan 🩻", "Whooping cough (dTpa) vaccine from 20 weeks — ideally by 32", "Halfway celebration dinner?"] },
+      { w: [21, 22], em: "🥕", size: "A carrot · about 27cm", title: "Eyebrows and taste buds",
+        baby: ["Eyebrows, eyelids and taste buds have formed", "Can taste flavours from what Laura eats"],
+        mum: ["Braxton Hicks (practice tightenings) may start", "Leg cramps and stretch marks can show up"],
+        todo: ["Start thinking about the nursery", "Baby name list 📝", "Book a hospital tour"] },
+      { w: [23, 24], em: "🌽", size: "A corn cob · about 30cm", title: "Lungs getting ready",
+        baby: ["Lungs start making surfactant, which helps them breathe later", "Hearing is getting sharp — music and voices"],
+        mum: ["Swollen ankles and heartburn are common", "Learn baby's usual pattern of movements"],
+        todo: ["Book the glucose tolerance test (24–28 weeks)", "Any sudden swelling, bad headache or vision changes — call your care provider"] },
+      { w: [25, 26], em: "🥦", size: "A head of broccoli · about 35cm", title: "Eyes about to open",
+        baby: ["Eyes begin to open around 26 weeks", "Responds to touch and sound", "Baby hiccups — little rhythmic jumps!"],
+        mum: ["Sleep gets trickier — pillows are your friend", "More aches as the bump grows"],
+        todo: ["Glucose tolerance test", "Start writing birth preferences", "Look into Parental Leave Pay with Services Australia"] },
+      { w: [27, 28], em: "🍆", size: "An eggplant · about 37cm, ~1kg", title: "Hello, third trimester",
+        baby: ["Opens eyes and blinks", "Dreaming (REM) sleep", "Brain is growing fast"],
+        mum: ["Breathless and back pain more often", "From 28 weeks, go to sleep on your side"],
+        todo: ["Bloods to check for anaemia; Anti-D if Laura is Rh negative", "RSV vaccine: recommended 28–36 weeks", "If movements slow down or change — call the hospital straight away. Never wait"] },
+      { w: [29, 30], em: "🎃", size: "A butternut pumpkin · ~1.3–1.5kg", title: "Putting on weight",
+        baby: ["Gaining weight quickly", "Getting better at controlling their temperature"],
+        mum: ["Check-ups often move to every 2 weeks", "Tiredness returns"],
+        todo: ["Antenatal / birth classes", "Buy the car seat", "Parental Leave Pay can be claimed up to 97 days before the due date"] },
+      { w: [31, 32], em: "🥥", size: "A coconut · about 42cm, ~1.7kg", title: "Practising to breathe",
+        baby: ["Practising breathing movements", "Fingernails have grown", "Most babies turn head-down between now and 36 weeks"],
+        mum: ["More Braxton Hicks", "Even more trips to the loo"],
+        todo: ["Whooping cough vaccine done? (ideally by 32 weeks)", "Write the hospital bag list", "Plan who'll look after pets and the house"] },
+      { w: [33, 34], em: "🍍", size: "A pineapple · about 45cm, ~2.1kg", title: "Building immunity",
+        baby: ["Bones hardening — except the skull, which stays soft for birth", "Laura's antibodies are passing to baby"],
+        mum: ["Pressure in the pelvis", "Harder to get comfy at night"],
+        todo: ["Pack the hospital bag 👜", "Fit the car seat and get it checked", "Second Anti-D at 34 weeks if needed", "Learn the signs of labour"] },
+      { w: [35, 36], em: "🍈", size: "A honeydew melon · ~2.6kg", title: "Getting plump",
+        baby: ["The fine body hair is shedding", "Plumping up with fat"],
+        mum: ["Baby may 'drop' lower — easier to breathe, more pressure below"],
+        todo: ["Group B strep swab (35–37 weeks)", "RSV vaccine by 36 weeks if not done", "Check-ups go weekly", "Freezer meals! 🍲"] },
+      { w: [37, 38], em: "🍉", size: "A small watermelon · ~3kg", title: "Early term",
+        baby: ["From 37 weeks baby is 'early term'", "Practising sucking and gripping"],
+        mum: ["Nesting urges", "The mucus plug may come away"],
+        todo: ["Know when to call: waters break, regular contractions, bleeding or fewer movements", "Print the birth preferences", "Rest up"] },
+      { w: [39, 40], em: "👶", size: "A pumpkin · about 50cm, ~3.4kg", title: "Due date!",
+        baby: ["Ready to meet you", "Only about 1 in 20 babies arrive on their due date"],
+        mum: ["Contractions, waters, or a show — it could be any day"],
+        todo: ["Bag by the door, phone charged, hospital number saved", "Enjoy the last quiet days as two 💕"] },
+      { w: [41, 42], em: "⏳", size: "Still cooking", title: "Past due",
+        baby: ["Still doing well — just taking their time"],
+        mum: ["Extra monitoring checks on Laura and baby"],
+        todo: ["Talk with your care provider about induction", "Keep tracking movements closely"] }
+    ];
+
+    const triOf = w => (w <= 13 ? 1 : w <= 27 ? 2 : 3);
+    const TRI = {
+      1: ["First trimester", "Weeks 1–13 · the big building phase"],
+      2: ["Second trimester", "Weeks 14–27 · growing and moving"],
+      3: ["Third trimester", "Weeks 28–40+ · getting ready to meet you"]
+    };
+    const tlEl = document.getElementById("timeline");
+    let lastTri = 0, tlHTML = "";
+    TIMELINE.forEach((b, i) => {
+      const t = triOf(b.w[0]);
+      if (t !== lastTri) {
+        tlHTML += `<div class="tri-head" data-tri="${t}"><h3>${TRI[t][0].replace(/ (trimester)/, " <em>$1</em>")}</h3><p>${TRI[t][1]}</p></div>`;
+        lastTri = t;
+      }
+      const list = a => a.map(x => `<li>${esc(x)}</li>`).join("");
+      tlHTML += `
+        <article class="card tl-item" id="weeks-${b.w[0]}-${b.w[1]}" data-i="${i}" data-tri="${t}">
+          <div class="tl-head">
+            <div class="tl-size" aria-hidden="true">${b.em}</div>
+            <div>
+              <p class="tl-weeks"><span class="pill">Weeks ${b.w[0]}–${b.w[1]}</span></p>
+              <h4>${esc(b.title)}</h4>
+              <p class="size-line">Size: ${esc(b.size)}</p>
+            </div>
+          </div>
+          <div class="tl-cols">
+            <div class="tl-col baby"><h5><i></i>Baby</h5><ul>${list(b.baby)}</ul></div>
+            <div class="tl-col mum"><h5><i></i>Laura</h5><ul>${list(b.mum)}</ul></div>
+            <div class="tl-col todo"><h5><i></i>To do</h5><ul>${list(b.todo)}</ul></div>
+          </div>
+        </article>`;
+    });
+    tlEl.innerHTML = tlHTML;
+
+    document.querySelectorAll("[data-tri].chip").forEach(chip => chip.addEventListener("click", () => {
+      document.querySelectorAll("[data-tri].chip").forEach(c => c.setAttribute("aria-pressed", String(c === chip)));
+      const f = chip.dataset.tri;
+      tlEl.querySelectorAll("[data-tri]").forEach(el => el.hidden = f !== "all" && el.dataset.tri !== f);
+    }));
+
+    /* ---------- Due date / "you are here" ---------- */
+    const DAY = 86400000;
+    const dueOut = document.getElementById("dueOut"), dueInput = document.getElementById("dueInput"), jumpNow = document.getElementById("jumpNow");
+    let mode = "due";
+    const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+    const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+    const fmt = d => d.toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "long", year: "numeric" });
+
+    function renderDue() {
+      const due = store.get("due") || DUE_DATE;
+      tlEl.querySelectorAll(".tl-item").forEach(el => { el.classList.remove("now", "past"); el.querySelector(".now-badge")?.remove(); });
+      if (!due) {
+        dueOut.innerHTML = `<div class="due-week">Week <em>?</em></div><p class="due-sub due-empty">Add the due date (or the first day of Laura's last period) and we'll show exactly where you're up to.</p>`;
+        jumpNow.hidden = true; return;
+      }
+      const dueD = parse(due), today = new Date(); today.setHours(0, 0, 0, 0);
+      const days = Math.max(0, 280 - Math.round((dueD - today) / DAY));
+      const wk = Math.floor(days / 7), dy = days % 7, left = Math.max(0, 280 - days);
+      const tri = triOf(wk + 1);
+      const pct = Math.min(100, days / 280 * 100);
+      dueOut.innerHTML = `
+        <div class="due-week">${wk} weeks <em>+ ${dy} day${dy === 1 ? "" : "s"}</em></div>
+        <p class="due-sub">Due ${fmt(dueD)}</p>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><span style="width:${pct}%"></span></div>
+        <div class="progress-marks"><span style="left:0">Wk 0</span><span style="left:32.5%">13</span><span style="left:67.5%">27</span><span style="left:100%">40</span></div>
+        <div class="due-stats">
+          <div><b>${left}</b><small>days to go</small></div>
+          <div><b>${Math.round(pct)}%</b><small>of the way</small></div>
+          <div><b>${tri}${["", "st", "nd", "rd"][tri]}</b><small>trimester</small></div>
+        </div>`;
+      dueInput.value = mode === "due" ? due : iso(new Date(dueD - 280 * DAY));
+      const cur = Math.min(TIMELINE.length - 1, Math.floor(wk / 2));
+      tlEl.querySelectorAll(".tl-item").forEach(el => {
+        const i = +el.dataset.i;
+        if (i < cur) el.classList.add("past");
+        if (i === cur) { el.classList.add("now"); el.querySelector(".tl-weeks").insertAdjacentHTML("beforeend", `<span class="now-badge">We're here</span>`); }
+      });
+      jumpNow.hidden = false;
+    }
+    document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+      mode = b.dataset.mode;
+      document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+      renderDue();
+    }));
+    dueInput.addEventListener("change", () => {
+      if (!dueInput.value) return;
+      const d = parse(dueInput.value);
+      store.set("due", mode === "due" ? dueInput.value : iso(new Date(d.getTime() + 280 * DAY)));
+      renderDue();
+    });
+    document.getElementById("dueForm").addEventListener("submit", e => e.preventDefault());
+    jumpNow.addEventListener("click", e => {
+      e.preventDefault();
+      document.querySelector(".chip[data-tri='all']").click();
+      tlEl.querySelector(".tl-item.now")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    /* ---------- Food ----------
+       em: an emoji · name · note · ok (optional): when it IS fine */
+    const EAT = [
+      { em: "🥬", name: "Leafy greens & veggies", note: "Folate, iron and fibre. Wash well." },
+      { em: "🫘", name: "Lentils, chickpeas & beans", note: "Folate, iron, protein and fibre." },
+      { em: "🥩", name: "Lean red meat, well cooked", note: "Best source of iron and zinc. No pink." },
+      { em: "🍳", name: "Eggs, cooked firm", note: "Protein and choline. Yolk and white set." },
+      { em: "🐟", name: "Salmon, sardines & low-mercury fish", note: "Omega-3s for baby's brain. Cooked, 2–3 times a week." },
+      { em: "🧀", name: "Hard cheese, milk & yoghurt", note: "Calcium. Cheddar, parmesan, tasty — pasteurised." },
+      { em: "🌾", name: "Wholegrains", note: "Oats, wholemeal bread, brown rice — steady energy and helps constipation." },
+      { em: "🍓", name: "Fresh fruit, cut at home", note: "Vitamin C helps absorb iron. Wash first." },
+      { em: "🥜", name: "Nuts & seeds", note: "Healthy fats and protein (unless allergic)." },
+      { em: "🍠", name: "Sweet potato & carrots", note: "Safe, plant form of vitamin A." },
+      { em: "🫚", name: "Ginger", note: "Tea, biscuits or lollies can ease nausea." },
+      { em: "💧", name: "Plenty of water", note: "Helps tiredness, headaches and constipation." },
+      { em: "🍗", name: "Hot takeaway chicken", note: "Fine if eaten straight away while hot." },
+      { em: "🍦", name: "Ice cream & gelato", note: "Regular frozen tubs are fine — just not soft-serve." }
+    ];
+    const AVOID = [
+      { em: "🍷", name: "Alcohol", note: "No safe amount in pregnancy." },
+      { em: "🧀", name: "Soft cheese", note: "Brie, camembert, blue, ricotta, feta — listeria risk.", ok: "OK cooked until steaming hot" },
+      { em: "🥪", name: "Deli & sliced meats", note: "Ham, salami, packaged sliced meat, cold cooked chicken.", ok: "OK cooked until steaming hot" },
+      { em: "🍣", name: "Sushi, sashimi & raw seafood", note: "Raw oysters, smoked salmon, pre-cooked prawns." },
+      { em: "🦈", name: "High-mercury fish", note: "Shark (flake), swordfish, marlin: 150g a fortnight max. Orange roughy, catfish: once a week max." },
+      { em: "🥚", name: "Raw or runny eggs", note: "Homemade mayo, aioli, mousse, raw cake batter, runny poached eggs." },
+      { em: "🥗", name: "Pre-cut salads & fruit", note: "Pre-packed salads, salad bars and buffets." },
+      { em: "🍈", name: "Rockmelon", note: "Can carry listeria or salmonella." },
+      { em: "🌱", name: "Raw sprouts", note: "Bean and alfalfa sprouts." },
+      { em: "🍖", name: "Pâté & liver", note: "Pâté can carry listeria; liver has very high vitamin A." },
+      { em: "🥩", name: "Rare or raw meat", note: "No pink in mince, sausages or pork. Cook it through." },
+      { em: "🍨", name: "Soft-serve ice cream", note: "The machines can grow listeria." },
+      { em: "🥛", name: "Unpasteurised dairy", note: "Raw milk and cheese made from it." },
+      { em: "🧆", name: "Hummus, tahini & halva", note: "Sesame products may carry salmonella." },
+      { em: "⚡", name: "Energy drinks & lots of coffee", note: "Keep caffeine under 200mg a day." },
+      { em: "🍲", name: "Old leftovers", note: "Eat within a day, reheated until steaming hot." }
+    ];
+    const foodHTML = arr => arr.map(f => `
+      <div class="food-item">
+        <span class="em" aria-hidden="true">${f.em}</span>
+        <div><b>${esc(f.name)}</b><span>${esc(f.note)}</span>${f.ok ? `<em class="safe">${esc(f.ok)}</em>` : ""}</div>
+      </div>`).join("");
+    document.getElementById("eatList").innerHTML = foodHTML(EAT);
+    document.getElementById("avoidList").innerHTML = foodHTML(AVOID);
+
+    /* ---------- Hospital checklists ---------- */
+    const CHECKLISTS = {
+      "hospital-fund": [
+        "Does our policy cover pregnancy & birth?",
+        "When does our 12-month waiting period finish — is it before the due date?",
+        "What's our hospital excess?",
+        "Which private hospitals near us does the fund have agreements with?",
+        "Do they have any 'no gap' or known-gap obstetricians?",
+        "What do they pay towards a private room, and Grant staying over?",
+        "Is baby automatically covered once we switch to a family policy?",
+        "Can we use our cover as a private patient in a public hospital?"
+      ],
+      "hospital-ob": [
+        "What's your total fee, and what will we get back from Medicare?",
+        "Which hospital do you deliver at — and does it have a NICU?",
+        "Who delivers if you're away or off duty?",
+        "What are your caesarean and induction rates?",
+        "How do you feel about our birth preferences?",
+        "How long is the usual stay after birth?",
+        "Can Grant stay overnight?",
+        "(Public) Is there a midwifery group practice or continuity program — how do we get on it?"
+      ]
+    };
+    document.querySelectorAll("[data-checklist]").forEach(box => {
+      const key = box.dataset.checklist, saved = store.get(key) || [];
+      box.insertAdjacentHTML("beforeend", CHECKLISTS[key].map((q, i) =>
+        `<label><input type="checkbox" data-i="${i}" ${saved.includes(i) ? "checked" : ""}/><span>${esc(q)}</span></label>`).join(""));
+      box.addEventListener("change", () => store.set(key, [...box.querySelectorAll("input:checked")].map(x => +x.dataset.i)));
+    });
+
+    /* ---------- Learn ----------
+       To add something, copy a line in the right list.
+       url: a link (leave "" to search for it automatically) · aus: true shows an Aussie tag */
+    const yt = q => "https://www.youtube.com/results?search_query=" + encodeURIComponent(q);
+    const pod = q => "https://open.spotify.com/search/" + encodeURIComponent(q) + "/podcastAndEpisodes";
+    const book = q => "https://www.goodreads.com/search?q=" + encodeURIComponent(q);
+    const app = q => "https://www.google.com/search?q=" + encodeURIComponent(q + " app");
+
+    const LEARN = {
+      books: { label: "Books", em: "📚", tint: "#f4d9dc", intro: "A mix of week-by-week guides, birth prep and one or two for Grant.", items: [
+        { name: "Up the Duff", by: "Kaz Cooke", why: "The Aussie classic — a funny, honest week-by-week guide written for Australia.", aus: true },
+        { name: "Juju Sundin's Birth Skills", by: "Juju Sundin", why: "A Sydney physio's practical, drug-free techniques for coping with labour. Great for partners too.", aus: true },
+        { name: "Expecting Better", by: "Emily Oster", why: "An economist goes through the data behind the pregnancy 'rules' — calm and reassuring." },
+        { name: "Ina May's Guide to Childbirth", by: "Ina May Gaskin", why: "Gentle, positive birth stories and how the body works in labour." },
+        { name: "The Positive Birth Book", by: "Milli Hill", why: "Down-to-earth guide to planning a birth that feels good, whatever kind it is." },
+        { name: "The Birth Partner", by: "Penny Simkin", why: "The go-to book for Grant — how to support Laura before, during and after." },
+        { name: "What to Expect When You're Expecting", by: "Heidi Murkoff", why: "The big reference book that answers nearly every 'is this normal?' question." },
+        { name: "Cribsheet", by: "Emily Oster", why: "For later — the data on sleep, feeding and the early baby years." }
+      ]},
+      podcasts: { label: "Podcasts", em: "🎧", tint: "#ebe4f3", intro: "For walks, drives and folding tiny clothes.", items: [
+        { name: "Australian Birth Stories", by: "Sophie Walker", why: "Real Aussie women share their births — public, private, home, caesarean, all of it.", aus: true },
+        { name: "Evidence Based Birth", by: "Dr Rebecca Dekker", why: "Clear, research-based episodes on induction, due dates, pain relief and more." },
+        { name: "The Birth Hour", by: "Bryn Huntpalmer", why: "Hundreds of birth stories — easy to find one that sounds like your plan." },
+        { name: "Down to Birth", by: "Cynthia Overgard & Trish Ploss", why: "Childbirth educators answering real questions about pregnancy and birth." },
+        { name: "The Pregnancy Podcast", by: "Vanessa Bennington", why: "Short, practical episodes that follow along with pregnancy." }
+      ]},
+      youtube: { label: "YouTube", em: "▶️", tint: "#fbe4e7", intro: "Good for seeing things — breathing, positions, and what a hospital birth actually looks like.", items: [
+        { name: "Pregnancy, Birth and Baby", by: "Australian Government", why: "Short official videos on pregnancy, tests and birth in Australia.", aus: true },
+        { name: "The Royal Women's Hospital", by: "Melbourne", why: "Videos from one of Australia's biggest maternity hospitals.", aus: true },
+        { name: "Raising Children Network", by: "Australian parenting site", why: "Newborn care — bathing, feeding, settling — for when baby arrives.", aus: true },
+        { name: "Bridget Teyler", by: "Labour & delivery nurse", why: "Very popular birth prep videos: pushing, positions, what to pack." },
+        { name: "Evidence Based Birth", by: "Dr Rebecca Dekker", why: "The research on birth choices, explained simply." },
+        { name: "Mama Natural", by: "Week-by-week videos", why: "A cheery video for every week of pregnancy." }
+      ]},
+      websites: { label: "Websites", em: "🌐", tint: "#e8f0e4", intro: "Trusted Australian sites to check before Dr Google.", items: [
+        { name: "Pregnancy, Birth and Baby", by: "pregnancybirthbaby.org.au", url: "https://www.pregnancybirthbaby.org.au/", why: "The government's pregnancy site. Free helpline with maternal health nurses: 1800 882 436.", aus: true },
+        { name: "Raising Children Network", by: "raisingchildren.net.au", url: "https://raisingchildren.net.au/pregnancy", why: "Reliable, friendly info from pregnancy right through childhood.", aus: true },
+        { name: "The Royal Women's Hospital", by: "thewomens.org.au", url: "https://www.thewomens.org.au/health-information/pregnancy-and-birth", why: "Detailed fact sheets on pregnancy, birth and recovery.", aus: true },
+        { name: "Food Standards Australia NZ", by: "foodstandards.gov.au", url: "https://www.foodstandards.gov.au/consumer/generalissues/pregnancy", why: "The official word on food safety while pregnant.", aus: true },
+        { name: "Safer Baby Bundle", by: "saferbaby.org.au", url: "https://www.saferbaby.org.au/", why: "Simple steps that lower the risk of stillbirth — side sleeping, tracking movements.", aus: true },
+        { name: "Red Nose", by: "rednose.org.au", url: "https://rednose.org.au/", why: "Safe sleep for babies — cots, wrapping and the nursery.", aus: true },
+        { name: "PANDA", by: "panda.org.au", url: "https://panda.org.au/", why: "Support for anxiety and depression in pregnancy and after — for both of you. Helpline 1300 726 306.", aus: true },
+        { name: "Australian Breastfeeding Association", by: "breastfeeding.asn.au", url: "https://www.breastfeeding.asn.au/", why: "Classes, info and a 24/7 helpline for feeding.", aus: true },
+        { name: "Parental Leave Pay", by: "Services Australia", url: "https://www.servicesaustralia.gov.au/parental-leave-pay", why: "Check what you're eligible for and when to claim.", aus: true }
+      ]},
+      apps: { label: "Apps", em: "📱", tint: "#fff4e6", intro: "Handy ones for the phone.", items: [
+        { name: "Pregnancy+", by: "Week-by-week tracker", why: "Lovely 3D images of baby's size each week, plus a kick counter and contraction timer." },
+        { name: "BabyCenter", by: "Pregnancy tracker", why: "Daily updates and a big community of parents due the same month." },
+        { name: "Count the Kicks", by: "Movement tracker", why: "Helps you learn baby's normal pattern of movements in the third trimester." },
+        { name: "Full Term", by: "Contraction timer", why: "A simple timer for when the real thing starts." }
+      ]}
+    };
+    const LEARN_KEYS = Object.keys(LEARN);
+
+    // Learn links in the desktop dropdown and the mobile drawer
+    document.querySelectorAll("[data-learn-links]").forEach(el => {
+      el.innerHTML = LEARN_KEYS.map(k => `<a href="#learn/${k}" data-view-link>${el.closest(".dd-menu") ? `<span class="ic">${LEARN[k].em}</span>` : LEARN[k].em + " "}${LEARN[k].label}</a>`).join("");
+    });
+    document.getElementById("learnTabs").innerHTML = LEARN_KEYS.map(k =>
+      `<a class="chip" role="tab" href="#learn/${k}" data-tab="${k}">${LEARN[k].em} ${LEARN[k].label}</a>`).join("");
+
+    function renderLearn(k) {
+      const cat = LEARN[k];
+      document.querySelectorAll("#learnTabs .chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.tab === k)));
+      document.getElementById("learnIntro").textContent = cat.intro;
+      document.getElementById("learnGrid").innerHTML = cat.items.map(r => {
+        const url = r.url || ({ books: book, podcasts: pod, youtube: yt, apps: app }[k])(r.name + (k === "books" ? " " + r.by : ""));
+        const verb = { books: "Find the book", podcasts: "Listen", youtube: "Watch on YouTube", websites: "Visit site", apps: "Find the app" }[k];
+        return `
+        <a class="card res" href="${url}" target="_blank" rel="noopener">
+          <div class="res-top">
+            <span class="res-ic" style="background:${cat.tint}" aria-hidden="true">${cat.em}</span>
+            <span class="res-kind">${cat.label.replace(/s$/, "")}</span>
+          </div>
+          <h4>${esc(r.name)}${r.aus ? `<span class="aus">🇦🇺 Aussie</span>` : ""}</h4>
+          <p class="by">${esc(r.by)}</p>
+          <p class="why">${esc(r.why)}</p>
+          <span class="go">${verb} <span aria-hidden="true">→</span></span>
+        </a>`;
+      }).join("");
+    }
+
+    /* =========================================================
+       VIEW SWITCHING (reads the #hash in the URL)
+       #timeline, #food, #hospital, #learn, #learn/books …
+       ========================================================= */
+    const VIEWS = ["timeline", "food", "hospital", "learn"];
+    const hamburger = document.getElementById("hamburger"), sideNav = document.getElementById("sideNav");
+    const learnToggle = document.getElementById("learnToggle"), learnMenu = document.getElementById("learnMenu");
+    const sideLearnToggle = document.getElementById("sideLearnToggle"), sideLearn = document.getElementById("sideLearn");
+
+    function showView() {
+      const parts = location.hash.replace("#", "").toLowerCase().split("/");
+      let name = VIEWS.includes(parts[0]) ? parts[0] : "timeline";
+      const sub = LEARN_KEYS.includes(parts[1]) ? parts[1] : LEARN_KEYS[0];
+      const route = name === "learn" ? "learn/" + sub : name;
+
+      document.querySelectorAll(".view").forEach(v => v.classList.toggle("active", v.id === "view-" + name));
+      document.querySelectorAll("a[data-view-link]").forEach(a => {
+        if (a.getAttribute("href") === "#" + route) a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      });
+      learnToggle.classList.toggle("current", name === "learn");
+      sideLearnToggle.classList.toggle("current", name === "learn");
+      if (name === "learn") renderLearn(sub);
+      document.title = document.getElementById("view-" + name).dataset.title.replace("&amp;", "&");
+      closeMenu(); closeDropdown();
+      window.scrollTo(0, 0);
+    }
+    window.addEventListener("hashchange", showView);
+
+    /* ---------- Desktop "Learn" dropdown ---------- */
+    function closeDropdown() { learnMenu.classList.remove("open"); learnToggle.setAttribute("aria-expanded", "false"); }
+    learnToggle.addEventListener("click", e => {
+      e.stopPropagation();
+      const open = learnMenu.classList.toggle("open");
+      learnToggle.setAttribute("aria-expanded", String(open));
+    });
+    document.addEventListener("click", e => { if (!e.target.closest(".dropdown")) closeDropdown(); });
+
+    /* ---------- Mobile menu ---------- */
+    function closeMenu() {
+      sideNav.classList.remove("open");
+      hamburger.setAttribute("aria-expanded", "false");
+      hamburger.setAttribute("aria-label", "Open menu");
+      document.body.style.overflow = "";
+    }
+    hamburger.addEventListener("click", () => {
+      const open = sideNav.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", String(open));
+      hamburger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      document.body.style.overflow = open ? "hidden" : "";
+      if (open && location.hash.startsWith("#learn")) { sideLearn.classList.add("open"); sideLearnToggle.setAttribute("aria-expanded", "true"); }
+    });
+    sideLearnToggle.addEventListener("click", () => {
+      const open = sideLearn.classList.toggle("open");
+      sideLearnToggle.setAttribute("aria-expanded", String(open));
+    });
+    sideNav.addEventListener("click", e => { if (e.target.closest("a") && e.target.closest("a").getAttribute("href") === location.hash) closeMenu(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") { closeMenu(); closeDropdown(); } });
+
+    /* ---------- Soft petal dots (decoration) ---------- */
+    document.querySelectorAll("[data-dots]").forEach(el => {
+      const colours = ["#f4d9dc", "#e5a3b1", "#c0627d", "#d9c6e8", "#a892c4", "#e8f0e4", "#f3d3a8"];
+      const n = +el.dataset.dots;
+      let svg = '<svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true">';
+      for (let i = 0; i < n; i++) {
+        const a = Math.random() * Math.PI * 2, d = Math.sqrt(Math.random()) * 46;
+        const r = 1 + Math.random() * 4;
+        svg += `<circle cx="${(50 + Math.cos(a) * d).toFixed(1)}" cy="${(50 + Math.sin(a) * d).toFixed(1)}" r="${r.toFixed(1)}" fill="${colours[i % colours.length]}" opacity="${(.35 + Math.random() * .5).toFixed(2)}"/>`;
+      }
+      el.innerHTML = svg + "</svg>";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderDue();
+    showView();
+  </script>
+</body>
+</html>

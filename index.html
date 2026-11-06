@@ -327,7 +327,89 @@
     .food-item .em { font-size: 1.5rem; line-height: 1.2; flex: none; }
     .food-item b { display: block; font-weight: 600; line-height: 1.3; }
     .food-item span { display: block; font-size: .88rem; color: var(--muted); line-height: 1.45; margin-top: .15rem; }
-    .food-item .safe { display: inline-block; margin-top: .4rem; font-size: .76rem; font-weight: 600; color: var(--sage); background: var(--sage-bg); padding: .15rem .55rem; border-radius: 99px; font-style: normal; }
+    .food-item { width: 100%; text-align: left; border: 1px solid transparent; cursor: pointer; font: inherit; color: inherit; position: relative; transition: transform .15s, border-color .2s, box-shadow .2s; }
+    .food-item:hover { border-color: var(--rose-2); box-shadow: 0 6px 18px -10px rgba(67,40,47,.3); }
+    .food-item:active { transform: scale(.98); }
+    .food-item .lvl { display: inline-flex; align-items: center; gap: .3rem; margin-top: .45rem; font-size: .72rem; font-weight: 600; letter-spacing: .03em; padding: .15rem .55rem; border-radius: 99px; font-style: normal; }
+    .food-item .lvl::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .food-item .more { position: absolute; right: .7rem; top: .75rem; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: .75rem; font-weight: 700; color: var(--muted); background: var(--bg); }
+    .food-item > div { padding-right: 1.4rem; }
+    .lvl-high { color: #b23a55; background: #fbe0e5; }
+    .lvl-med  { color: #a8662a; background: #fdecd8; }
+    .lvl-low  { color: #7b6a2a; background: #f6f0cf; }
+    .lvl-safe { color: #4f7a4c; background: #e3eedf; }
+
+    .food-hint { display: flex; align-items: center; justify-content: space-between; gap: .75rem 1.5rem; flex-wrap: wrap; margin-top: clamp(1.75rem, 4vw, 2.5rem); }
+    .food-hint p { margin: 0; font-weight: 500; display: flex; align-items: center; gap: .5rem; }
+    .food-hint p span { width: 30px; height: 30px; border-radius: 50%; background: var(--blush); display: grid; place-items: center; }
+    .legend { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .legend .lvl { display: inline-flex; align-items: center; gap: .35rem; font-size: .78rem; font-weight: 600; padding: .3rem .7rem; border-radius: 99px; }
+    .legend .lvl::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .food-grid { margin-top: 1rem; }
+
+    .germs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.25rem; }
+    .germ { padding: 1.25rem; }
+    .germ .g-top { display: flex; align-items: center; gap: .7rem; margin-bottom: .5rem; }
+    .germ .g-ic { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; font-size: 1.35rem; background: var(--bg-3); flex: none; }
+    .germ h4 { font-size: 1.25rem; }
+    .germ .g-in { font-size: .8rem; color: var(--muted); margin: .1rem 0 0; }
+    .germ p { margin: .4rem 0 0; font-size: .95rem; line-height: 1.5; }
+    .germ p b { color: var(--rose); }
+    .block-title { margin-top: clamp(2.75rem, 6vw, 4rem); }
+
+    .habits { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.25rem; }
+    .habit-card { padding: clamp(1.25rem, 3vw, 1.75rem); }
+    .habit-card h3 { font-size: 1.4rem; margin-bottom: .75rem; display: flex; align-items: center; gap: .55rem; }
+    .habit-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .65rem; }
+    .habit-card li { display: flex; gap: .7rem; align-items: flex-start; line-height: 1.45; }
+    .habit-card li i { font-style: normal; flex: none; width: 30px; height: 30px; border-radius: 10px; background: var(--bg); display: grid; place-items: center; font-size: 1rem; }
+    .unwell { margin-top: 1rem; }
+
+    /* ---------- Food detail sheet (bottom sheet on phones, centred card on computers) ---------- */
+    .sheet-wrap { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1.5rem; visibility: hidden; }
+    .sheet-wrap.open { visibility: visible; }
+    .sheet-backdrop { position: absolute; inset: 0; background: rgba(52, 28, 36, .42); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); opacity: 0; transition: opacity .25s; }
+    .sheet-wrap.open .sheet-backdrop { opacity: 1; }
+    .sheet {
+      position: relative; width: 100%; max-width: 560px; max-height: min(86vh, 820px); overflow-y: auto; overscroll-behavior: contain;
+      background: var(--bg-2); border-radius: 28px; box-shadow: 0 30px 80px -20px rgba(52,28,36,.45);
+      padding: 1.75rem; opacity: 0; transform: translateY(16px) scale(.98); transition: opacity .25s, transform .3s cubic-bezier(.2,.8,.2,1);
+    }
+    .sheet-wrap.open .sheet { opacity: 1; transform: none; }
+    .sheet-grab { display: none; width: 42px; height: 5px; border-radius: 9px; background: var(--line); margin: -.6rem auto .9rem; background: #e2d3d6; }
+    .sheet-close { position: absolute; right: 1rem; top: 1rem; width: 40px; height: 40px; border-radius: 50%; border: 0; background: var(--bg); cursor: pointer; display: grid; place-items: center; }
+    .sheet-close svg { width: 18px; height: 18px; }
+    .sh-head { display: flex; gap: 1rem; align-items: center; padding-right: 2.5rem; }
+    .sh-em { width: 72px; height: 72px; border-radius: 22px; background: var(--bg-3); display: grid; place-items: center; font-size: 2.4rem; flex: none; }
+    .sh-head h3 { font-size: clamp(1.5rem, 5vw, 1.9rem); }
+    .sh-head p { margin: .3rem 0 0; color: var(--muted); font-size: .92rem; line-height: 1.4; }
+    .meter { margin: 1.4rem 0 .4rem; }
+    .meter-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: .5rem; }
+    .meter-top b { font-family: var(--display); font-size: 1.3rem; }
+    .meter-top small { color: var(--muted); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+    .meter-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+    .meter-bar span { height: 10px; border-radius: 9px; background: var(--bg-3); }
+    .meter-bar.l1 span:nth-child(-n+1) { background: #8db588; }
+    .meter-bar.l2 span:nth-child(-n+2) { background: #e2c75a; }
+    .meter-bar.l3 span:nth-child(-n+3) { background: #e59a52; }
+    .meter-bar.l4 span:nth-child(-n+4) { background: #d0506f; }
+    .meter-scale { display: flex; justify-content: space-between; font-size: .7rem; color: var(--muted); margin-top: .35rem; }
+    .sh-sec { margin-top: 1.35rem; }
+    .sh-sec h4 { font-family: var(--body); font-size: .76rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin: 0 0 .55rem; }
+    .sh-sec > p { margin: 0; line-height: 1.55; }
+    .germ-chip { background: var(--bg); border-radius: 16px; padding: .85rem 1rem; display: flex; gap: .75rem; align-items: flex-start; }
+    .germ-chip + .germ-chip { margin-top: .5rem; }
+    .germ-chip .g-ic { font-size: 1.3rem; line-height: 1.3; }
+    .germ-chip b { display: block; }
+    .germ-chip span { display: block; font-size: .9rem; color: var(--muted); line-height: 1.45; margin-top: .15rem; }
+    .swap { background: var(--sage-bg); border-radius: 16px; padding: .9rem 1rem; display: flex; gap: .7rem; line-height: 1.5; }
+    .swap i { font-style: normal; font-size: 1.2rem; }
+    .sh-tips { list-style: none; margin: 0; padding: 0; display: grid; gap: .45rem; }
+    .sh-tips li { position: relative; padding-left: 1.1rem; line-height: 1.5; }
+    .sh-tips li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: var(--rose-2); }
+    .sh-src { margin: 1.4rem 0 0; font-size: .78rem; color: var(--muted); }
+    .sh-nav { display: flex; gap: .5rem; margin-top: 1.2rem; }
+    .sh-nav .btn { flex: 1; }
 
     .numbers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: clamp(2rem, 5vw, 3rem); }
     .num { padding: 1.25rem; }
@@ -405,6 +487,41 @@
     .res .aus { display: inline-block; font-size: .7rem; font-weight: 600; padding: .1rem .5rem; border-radius: 99px; background: #fff4e6; color: #a8732e; margin-left: .35rem; vertical-align: middle; letter-spacing: .02em; }
 
     /* =========================================================
+       ALONG THE WAY (our notes)
+       ========================================================= */
+    .note-tools { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin: clamp(1.75rem, 4vw, 2.5rem) 0 1rem; }
+    .note-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+    .note {
+      text-align: left; font: inherit; color: inherit; cursor: pointer; padding: 1.25rem; display: flex; flex-direction: column; gap: .55rem;
+      position: relative; transition: transform .15s, border-color .2s; min-height: 150px;
+    }
+    .note:hover { border-color: var(--rose-2); transform: translateY(-2px); }
+    .note:active { transform: scale(.98); }
+    .note-top { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+    .note-em { width: 50px; height: 50px; border-radius: 16px; display: grid; place-items: center; font-size: 1.5rem; }
+    .note-num { font-family: var(--display); font-style: italic; color: var(--rose-2); font-size: 1.1rem; }
+    .note h4 { font-size: 1.25rem; line-height: 1.2; }
+    .note .n-line { margin: 0; color: var(--muted); font-size: .92rem; line-height: 1.45; flex: 1; }
+    .note-tags { display: flex; gap: .35rem; flex-wrap: wrap; }
+    .ntag { font-size: .72rem; font-weight: 600; padding: .18rem .6rem; border-radius: 99px; background: var(--bg-3); color: var(--muted); letter-spacing: .02em; }
+    .ntag.flag-call { background: #fbe0e5; color: #b23a55; }
+    .ntag.flag-check { background: #fdecd8; color: #a8662a; }
+    .note.mine .note-em { background: var(--bg-3) !important; }
+    .add-card { padding: clamp(1.25rem, 3vw, 1.75rem); margin-top: clamp(2rem, 5vw, 3rem); }
+    .add-card h3 { font-size: 1.5rem; margin-bottom: .3rem; }
+    .add-card > p { margin: 0 0 1rem; color: var(--muted); font-size: .95rem; }
+    .add-card textarea {
+      width: 100%; min-height: 140px; font: inherit; font-size: 16px; line-height: 1.5; color: var(--ink);
+      border: 1px solid var(--line); border-radius: 16px; padding: .85rem 1rem; background: var(--bg); resize: vertical;
+    }
+    .add-card .row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .75rem; }
+    .verdict { border-radius: 16px; padding: .9rem 1rem; line-height: 1.5; display: flex; gap: .7rem; }
+    .verdict.call { background: #fbe0e5; }
+    .verdict.check { background: #fdecd8; }
+    .verdict.yes { background: var(--sage-bg); }
+    .verdict i { font-style: normal; font-size: 1.2rem; }
+
+    /* =========================================================
        FOOTER
        ========================================================= */
     .site-footer { border-top: 1px solid var(--line); padding: 2rem 0 calc(2rem + env(safe-area-inset-bottom)); color: var(--muted); font-size: .9rem; }
@@ -447,6 +564,16 @@
       .food-item .em { font-size: 1.3rem; }
       .food-item b { font-size: .92rem; }
       .food-item span { font-size: .8rem; }
+      .germs { grid-template-columns: 1fr; }
+      .habits { grid-template-columns: 1fr; }
+      .food-item .more { right: .45rem; top: .5rem; width: 20px; height: 20px; font-size: .7rem; }
+      .food-item > div { padding-right: 0; }
+      .food-item .em { padding-right: 1.4rem; }
+      .food-item .lvl { font-size: .68rem; }
+      .sheet-wrap { padding: 0; align-items: flex-end; }
+      .sheet { max-width: none; max-height: 88vh; border-radius: 26px 26px 0 0; padding: 1.4rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom)); transform: translateY(100%); transition: transform .32s cubic-bezier(.2,.8,.2,1), opacity .2s; }
+      .sheet-grab { display: block; }
+      .sh-em { width: 60px; height: 60px; font-size: 2rem; border-radius: 18px; }
       .numbers { grid-template-columns: 1fr; }
       .jump-now { min-height: 40px; padding: .5rem 1rem; font-size: .88rem; }
       .due-stats b { font-size: 1.15rem; }
@@ -477,6 +604,7 @@
         <a href="#timeline" data-view-link>Timeline</a>
         <a href="#food" data-view-link>Food</a>
         <a href="#hospital" data-view-link>Hospital</a>
+        <a href="#along" data-view-link>Along the way</a>
         <div class="dropdown">
           <button class="dd-toggle" id="learnToggle" aria-expanded="false" aria-controls="learnMenu">
             Learn
@@ -497,6 +625,7 @@
     <a class="nav-link" href="#timeline" data-view-link>Timeline</a>
     <a class="nav-link" href="#food" data-view-link>Food</a>
     <a class="nav-link" href="#hospital" data-view-link>Hospital</a>
+    <a class="nav-link" href="#along" data-view-link>Along the way</a>
     <button class="nav-link" id="sideLearnToggle" aria-expanded="false" aria-controls="sideLearn">
       Learn
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
@@ -556,7 +685,14 @@
       <div class="wrap page-top">
         <p class="eyebrow">Eating for two</p>
         <h1 class="page-title">Good food, <em>safe food.</em></h1>
-        <p class="lede">Most of the "avoid" list is about a few bugs (listeria, salmonella, toxoplasma) and mercury. Freshly cooked and eaten hot is almost always fine.</p>
+        <p class="lede">Most of the "avoid" list comes down to a few germs (listeria, salmonella, toxoplasma) plus mercury. Freshly cooked and eaten hot is almost always fine.</p>
+
+        <div class="food-hint">
+          <p><span>👆</span>Tap any food to see its risk level and why</p>
+          <div class="legend" aria-label="Risk levels">
+            <span class="lvl lvl-safe">Enjoy</span><span class="lvl lvl-low">Low · take care</span><span class="lvl lvl-med">Medium · limit</span><span class="lvl lvl-high">High · avoid</span>
+          </div>
+        </div>
 
         <div class="food-grid">
           <div class="food-col eat">
@@ -569,7 +705,7 @@
           <div class="food-col avoid">
             <div class="food-col-head">
               <span class="badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 7l10 10M17 7 7 17"/></svg></span>
-              <div><h2>Best avoided</h2><p>Skip these until baby's here</p></div>
+              <div><h2>Best avoided</h2><p>Skip or limit these until baby's here</p></div>
             </div>
             <div class="food-list" id="avoidList"></div>
           </div>
@@ -580,6 +716,46 @@
           <div class="card num"><div class="big">0</div><h4>Alcohol</h4><p>There's no known safe amount in pregnancy. Kombucha, kefir and ginger beer have a little too.</p></div>
           <div class="card num"><div class="big">2–3</div><h4>Serves of fish a week</h4><p>Low-mercury fish like salmon, sardines and tuna, cooked. Shark (flake), swordfish and marlin: 150g a fortnight, max.</p></div>
           <div class="card num"><div class="big">400 + 150</div><h4>Folic acid &amp; iodine (mcg)</h4><p>A daily pregnancy supplement with at least 400mcg folic acid and 150mcg iodine. Ask the GP which one.</p></div>
+        </div>
+
+        <h2 class="section-title block-title">What we're <em>actually</em> avoiding</h2>
+        <p class="lede">The handful of things behind almost every rule on this page.</p>
+        <div class="germs" id="germGrid"></div>
+
+        <h2 class="section-title block-title">Safe food <em>habits</em></h2>
+        <p class="lede">From the NSW Food Authority. These matter as much as what's on the list.</p>
+        <div class="habits">
+          <div class="card habit-card">
+            <h3>🏡 At home</h3>
+            <ul>
+              <li><i>🚿</i><span>Wash fruit and veg under running water. Throw out anything dirty or badly bruised.</span></li>
+              <li><i>❄️</i><span>Keep the fridge at <b>5°C or colder</b>. Eat higher-risk chilled foods within 2–3 days.</span></li>
+              <li><i>🔥</i><span>Eat hot food <b>piping hot</b>. Cook meat, chicken, fish and eggs right through.</span></li>
+              <li><i>⏱️</i><span>Eat cold food within <b>2 hours</b> of making it, then fridge or freeze the rest.</span></li>
+              <li><i>🍱</i><span>Leftovers go in the fridge straight away. Use within a day and reheat until steaming. Never leave them in a warm car.</span></li>
+              <li><i>🔪</i><span>Separate boards for raw meat. Wash hands, knives and boards after handling it.</span></li>
+              <li><i>🐈</i><span>Toxoplasma lives in cat poo and soil, so Grant does the litter tray 😉. Wear gloves when gardening.</span></li>
+            </ul>
+          </div>
+          <div class="card habit-card">
+            <h3>🍽️ Eating out</h3>
+            <ul>
+              <li><i>👀</i><span>Check the place looks clean, including the bits you can't easily see.</span></li>
+              <li><i>🚫</i><span>Skip bain-maries, food under warming lights, salad bars and smorgasbords. At a buffet, choose hot food only.</span></li>
+              <li><i>🍳</i><span>Ask for your food to be cooked fresh.</span></li>
+              <li><i>↩️</i><span>Send it back if it's lukewarm or undercooked. That's completely fine to do.</span></li>
+              <li><i>🍣</i><span>Sushi: go for cooked fillings made fresh in front of you, like teriyaki chicken or cooked prawn.</span></li>
+              <li><i>🍦</i><span>Dessert: hard-frozen ice cream or gelato instead of soft-serve.</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout unwell">
+          <div class="ic">!</div>
+          <div>
+            <h3>Feeling unwell after eating something?</h3>
+            <p>Listeria symptoms can show up anywhere from a few days to <b>6 weeks</b> later. They look like flu: fever, chills, muscle aches, nausea or diarrhoea. If Laura might have eaten something risky and feels off, <b>see the GP or call the hospital promptly</b> and tell them she's pregnant. It's treatable with antibiotics.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -686,6 +862,33 @@
     </section>
 
     <!-- =====================================================
+         VIEW: ALONG THE WAY (things we learn)
+         ===================================================== -->
+    <section class="view" id="view-along" data-title="Along the way — Laura &amp; Bump">
+      <div class="wrap page-top">
+        <p class="eyebrow">Our notes</p>
+        <h1 class="page-title">What we learn <em>along the way.</em></h1>
+        <p class="lede">Little things we've picked up from the midwife, friends, podcasts and Dr Google. Tap one to see why it matters and what to actually do.</p>
+
+        <div class="note-tools">
+          <div class="chips" id="noteFilters" role="group" aria-label="Filter notes"></div>
+        </div>
+        <div class="note-grid" id="noteGrid"></div>
+
+        <div class="card add-card">
+          <h3>📝 Paste new notes</h3>
+          <p>Copy from the Notes app and paste here, one per line. They'll show up as tiles straight away on this phone. Send them to Claude too, and they'll be added properly with the "why" for both of your phones.</p>
+          <textarea id="noteInput" placeholder="-jelly beans by the bed&#10;-get up slowly"></textarea>
+          <div class="row">
+            <button class="btn btn-primary" id="noteAdd">Add notes</button>
+            <button class="btn btn-ghost" id="noteClear" hidden>Clear my pasted notes</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================
          VIEW: LEARN (with sub-tabs)
          ===================================================== -->
     <section class="view" id="view-learn" data-title="Learn — Laura &amp; Bump">
@@ -702,6 +905,16 @@
       </div>
     </section>
   </main>
+
+  <!-- Food detail sheet -->
+  <div class="sheet-wrap" id="sheetWrap" aria-hidden="true">
+    <div class="sheet-backdrop" data-close></div>
+    <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+      <div class="sheet-grab" aria-hidden="true"></div>
+      <button class="sheet-close" data-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div id="sheetBody"></div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="wrap">
@@ -912,48 +1125,357 @@
     });
 
     /* ---------- Food ----------
-       em: an emoji · name · note · ok (optional): when it IS fine */
+       Each food: em (emoji) · name · note (short line on the card) · level · germs · why · instead · tips
+       level:  "safe" | "low" | "med" | "high"
+       germs:  keys from GERMS below (what the risk actually is) */
+    const LEVELS = {
+      safe: { n: 1, label: "Enjoy",              long: "Safe: enjoy",                    tag: "Enjoy" },
+      low:  { n: 2, label: "Low risk",           long: "Low risk: fine with a bit of care", tag: "Take care" },
+      med:  { n: 3, label: "Medium risk",        long: "Medium risk: limit it, or only eat it cooked", tag: "Limit" },
+      high: { n: 4, label: "High risk",          long: "High risk: avoid while pregnant",   tag: "Avoid" }
+    };
+    const GERMS = {
+      listeria:   { em: "🦠", name: "Listeria", in: "Chilled ready-to-eat foods",
+                    short: "A bacteria that keeps growing even in the fridge. Pregnant women are around 10 times more likely to catch it, and it can cross the placenta, causing miscarriage, stillbirth, premature birth or a very sick newborn.",
+                    card: "Rare, but <b>pregnant women are ~10× more likely to catch it</b>, and it can pass to baby. It grows in the fridge, so cooking until steaming hot is what kills it." },
+      salmonella: { em: "🥚", name: "Salmonella", in: "Raw eggs, raw meat, sprouts, sesame",
+                    short: "Causes nasty food poisoning: fever, cramps, vomiting and diarrhoea. Pregnancy doesn't make it more likely, but the dehydration is harder on your body and in rare cases it can cause miscarriage.",
+                    card: "Classic food poisoning. <b>Not more likely in pregnancy</b>, but it hits harder, and in rare cases can cause miscarriage. Thorough cooking kills it." },
+      toxo:       { em: "🐈", name: "Toxoplasma", in: "Raw meat, soil, cat poo",
+                    short: "A parasite found in undercooked meat, unwashed produce and soil. Usually harmless to adults, but catching it for the first time in pregnancy can damage baby's eyes and brain.",
+                    card: "A parasite from raw meat, dirty veg and cat litter. <b>Can harm baby's brain and eyes</b> if caught for the first time in pregnancy." },
+      mercury:    { em: "🐟", name: "Mercury", in: "Big, long-lived fish",
+                    short: "Builds up in large predator fish. Too much can affect the development of baby's brain and nervous system. Smaller fish are low in mercury and very good for you.",
+                    card: "Builds up in big predator fish like shark and swordfish. <b>Too much affects baby's developing brain.</b> Small oily fish are great." },
+      vitA:       { em: "🍖", name: "Too much vitamin A", in: "Liver and liver products",
+                    short: "Animal vitamin A (retinol) in large amounts can cause birth defects. Plant vitamin A, like in carrots and sweet potato, is safe.",
+                    card: "Liver is packed with retinol, and <b>large amounts can cause birth defects</b>. Plant vitamin A from carrots and sweet potato is fine." },
+      alcohol:    { em: "🍷", name: "Alcohol", in: "Any alcoholic drink",
+                    short: "Crosses the placenta straight to baby, whose liver can't process it. It can cause Fetal Alcohol Spectrum Disorder (FASD), which is lifelong. No amount is known to be safe.",
+                    card: "Goes straight across the placenta. <b>No known safe amount</b>, and it can cause lifelong FASD." },
+      caffeine:   { em: "☕", name: "Too much caffeine", in: "Coffee, energy drinks, cola, tea",
+                    short: "Crosses the placenta. High amounts are linked to miscarriage and low birth weight. Under 200mg a day is considered fine.",
+                    card: "High amounts are <b>linked to miscarriage and low birth weight</b>. Under 200mg a day is fine." },
+      ecoli:      { em: "🧫", name: "E. coli", in: "Raw sprouts, undercooked mince",
+                    short: "Some strains cause severe food poisoning with stomach cramps and bloody diarrhoea, which can lead to serious dehydration.",
+                    card: "Some strains cause severe food poisoning. Thorough cooking kills it." }
+    };
+    const GERM_CARDS = ["listeria", "salmonella", "toxo", "mercury", "vitA", "alcohol"];
+
     const EAT = [
-      { em: "🥬", name: "Leafy greens & veggies", note: "Folate, iron and fibre. Wash well." },
-      { em: "🫘", name: "Lentils, chickpeas & beans", note: "Folate, iron, protein and fibre." },
-      { em: "🥩", name: "Lean red meat, well cooked", note: "Best source of iron and zinc. No pink." },
-      { em: "🍳", name: "Eggs, cooked firm", note: "Protein and choline. Yolk and white set." },
-      { em: "🐟", name: "Salmon, sardines & low-mercury fish", note: "Omega-3s for baby's brain. Cooked, 2–3 times a week." },
-      { em: "🧀", name: "Hard cheese, milk & yoghurt", note: "Calcium. Cheddar, parmesan, tasty — pasteurised." },
-      { em: "🌾", name: "Wholegrains", note: "Oats, wholemeal bread, brown rice — steady energy and helps constipation." },
-      { em: "🍓", name: "Fresh fruit, cut at home", note: "Vitamin C helps absorb iron. Wash first." },
-      { em: "🥜", name: "Nuts & seeds", note: "Healthy fats and protein (unless allergic)." },
-      { em: "🍠", name: "Sweet potato & carrots", note: "Safe, plant form of vitamin A." },
-      { em: "🫚", name: "Ginger", note: "Tea, biscuits or lollies can ease nausea." },
-      { em: "💧", name: "Plenty of water", note: "Helps tiredness, headaches and constipation." },
-      { em: "🍗", name: "Hot takeaway chicken", note: "Fine if eaten straight away while hot." },
-      { em: "🍦", name: "Ice cream & gelato", note: "Regular frozen tubs are fine — just not soft-serve." }
+      { em: "🥬", name: "Leafy greens & veggies", note: "Folate, iron and fibre. Wash well.", level: "safe",
+        why: "Packed with folate, which helps prevent neural tube defects, plus iron, fibre and vitamin C. Aim for 5 serves of veg a day.",
+        tips: ["Wash under running water, even if the bag says pre-washed", "Throw out anything slimy or badly bruised", "Cooked greens are just as good as raw"] },
+      { em: "🫘", name: "Lentils, chickpeas & beans", note: "Folate, iron, protein and fibre.", level: "safe",
+        why: "A great all-rounder: folate, iron, protein and lots of fibre, which helps with pregnancy constipation.",
+        tips: ["Tinned is fine, just rinse them", "Pair with vitamin C (tomato, capsicum) to absorb more iron"] },
+      { em: "🥩", name: "Lean red meat, well cooked", note: "Best source of iron and zinc. No pink.", level: "safe", germs: ["toxo"],
+        why: "The best source of easily absorbed iron. You need extra iron in pregnancy to make more blood for you and baby.",
+        tips: ["Cook until there's no pink, especially mince, sausages and burgers", "Steaks can still be eaten, just cooked well done", "Wash boards and knives after raw meat"] },
+      { em: "🍳", name: "Eggs, cooked firm", note: "Protein and choline. Yolk and white set.", level: "safe", germs: ["salmonella"],
+        why: "Great protein plus choline, which helps baby's brain develop. Safe as long as they're cooked through.",
+        tips: ["Cook until the white is set and the yolk starts to thicken", "Don't use cracked or dirty eggs", "Shop-bought mayo is fine; homemade is not"] },
+      { em: "🐟", name: "Salmon, sardines & low-mercury fish", note: "Omega-3s for baby's brain. Cooked, 2–3 times a week.", level: "safe", germs: ["mercury"],
+        why: "Omega-3 fats (DHA) support baby's brain and eyes. Small oily fish are low in mercury.",
+        tips: ["Cook to at least 63°C and eat straight away", "2–3 serves a week of salmon, sardines, tinned tuna, snapper etc.", "Tinned salmon and sardines count too"] },
+      { em: "🧀", name: "Hard cheese, milk & yoghurt", note: "Calcium. Cheddar, parmesan, tasty, all pasteurised.", level: "safe",
+        why: "Calcium for baby's bones and teeth, and to protect Laura's own. Hard cheeses are low in moisture, so listeria struggles to grow.",
+        tips: ["Check the label says pasteurised", "Cheddar, parmesan, tasty, edam, gouda, swiss are all good", "Yoghurt is fine, including probiotic yoghurt"] },
+      { em: "🌾", name: "Wholegrains", note: "Oats, wholemeal bread, brown rice: steady energy.", level: "safe",
+        why: "Slow-release energy plus fibre to help with constipation. Most Aussie bread is fortified with folic acid and iodine.",
+        tips: ["Porridge is easy on a queasy tummy", "Choose wholemeal or wholegrain where you can"] },
+      { em: "🍓", name: "Fresh fruit, cut at home", note: "Vitamin C helps absorb iron. Wash first.", level: "safe", germs: ["listeria", "toxo"],
+        why: "Vitamins, fibre and hydration. The risk is only in fruit someone else has cut and left sitting. Cut it yourself and eat it fresh.",
+        tips: ["Wash before cutting, including melon skins", "Eat cut fruit within a couple of hours, or refrigerate", "Frozen and tinned fruit are fine too"] },
+      { em: "🍈", name: "Whole melons you cut yourself", note: "Wash the skin, cut at home, eat fresh.", level: "low", germs: ["listeria", "salmonella"],
+        why: "Rockmelon skin is rough and can hold germs, which the knife drags through the flesh. Buying it whole and washing it first makes it much safer.",
+        instead: "Watermelon and honeydew have smoother skins and are lower risk.",
+        tips: ["Scrub the skin under running water before cutting", "Eat straight away; don't leave cut melon sitting out", "Never buy pre-cut melon"] },
+      { em: "🍣", name: "Homemade sushi with cooked fillings", note: "Teriyaki chicken, cooked prawn, egg, avo.", level: "low", germs: ["listeria"],
+        why: "Sushi made fresh with cooked fillings is fine. The risk is raw fish and sushi that's been sitting in a display fridge.",
+        tips: ["Make it at home, or have it made fresh in front of you", "Eat within 2 hours of making it", "Skip anything with raw fish or smoked salmon"] },
+      { em: "🥫", name: "Shelf-stable pâté", note: "The tins and pouches from the pantry aisle.", level: "low", germs: ["listeria", "vitA"],
+        why: "Canned and shelf-stable pâté is heat-treated in the can, so it doesn't have the listeria risk of the fridge kind. Liver-based ones are still high in vitamin A, so keep it occasional.",
+        tips: ["Refrigerate after opening and eat within a day or two", "Keep it to the odd treat if it's liver-based"] },
+      { em: "🥛", name: "Pasteurised milk & juice", note: "Supermarket milk, long-life and pasteurised juice.", level: "safe",
+        why: "Pasteurising heats it enough to kill listeria and other germs. Almost everything in Aussie supermarkets is pasteurised.",
+        tips: ["Avoid 'raw', 'unpasteurised' or fresh-squeezed juice from cafés and markets", "Juice you squeeze yourself at home and drink straight away is fine"] },
+      { em: "🥜", name: "Nuts & seeds", note: "Healthy fats and protein (unless allergic).", level: "safe",
+        why: "Healthy fats, protein, magnesium and fibre. There's no need to avoid nuts to prevent allergies in baby.",
+        tips: ["Good easy snack for nausea and tiredness"] },
+      { em: "🍠", name: "Sweet potato & carrots", note: "Safe, plant form of vitamin A.", level: "safe",
+        why: "Beta-carotene, the plant form of vitamin A, is safe. Your body only converts what it needs, unlike the retinol in liver.",
+        tips: ["Roasted, mashed, souped: all good"] },
+      { em: "🫚", name: "Ginger", note: "Tea, biscuits or lollies can ease nausea.", level: "safe",
+        why: "Has decent evidence for easing morning sickness.",
+        tips: ["Ginger tea, ginger biscuits or crystallised ginger", "Ask the GP before taking ginger supplements in high doses"] },
+      { em: "💧", name: "Plenty of water", note: "Helps tiredness, headaches and constipation.", level: "safe",
+        why: "Blood volume goes up by almost half in pregnancy, so you need more fluid. It helps with headaches, constipation and swelling.",
+        tips: ["Aussie tap water is fine", "Carry a bottle around", "Untreated water (tanks, creeks) and tap water overseas: boil or use bottled"] },
+      { em: "🍗", name: "Hot takeaway chicken", note: "Fine if eaten straight away while hot.", level: "low", germs: ["listeria"],
+        why: "Freshly cooked hot chicken is safe. The risk starts once it cools, because listeria can grow in cold cooked chicken.",
+        tips: ["Eat it while it's hot", "Refrigerate leftovers straight away and eat within a day, reheated until steaming", "Avoid the cold pre-cooked chicken in the deli fridge"] },
+      { em: "🍦", name: "Hard ice cream & gelato", note: "Regular frozen tubs are fine. Just not soft-serve.", level: "safe",
+        why: "Hard-frozen ice cream is kept too cold for listeria to grow. It's the soft-serve machines that are the problem.",
+        tips: ["Tubs from the supermarket and scooped gelato are fine"] }
     ];
     const AVOID = [
-      { em: "🍷", name: "Alcohol", note: "No safe amount in pregnancy." },
-      { em: "🧀", name: "Soft cheese", note: "Brie, camembert, blue, ricotta, feta — listeria risk.", ok: "OK cooked until steaming hot" },
-      { em: "🥪", name: "Deli & sliced meats", note: "Ham, salami, packaged sliced meat, cold cooked chicken.", ok: "OK cooked until steaming hot" },
-      { em: "🍣", name: "Sushi, sashimi & raw seafood", note: "Raw oysters, smoked salmon, pre-cooked prawns." },
-      { em: "🦈", name: "High-mercury fish", note: "Shark (flake), swordfish, marlin: 150g a fortnight max. Orange roughy, catfish: once a week max." },
-      { em: "🥚", name: "Raw or runny eggs", note: "Homemade mayo, aioli, mousse, raw cake batter, runny poached eggs." },
-      { em: "🥗", name: "Pre-cut salads & fruit", note: "Pre-packed salads, salad bars and buffets." },
-      { em: "🍈", name: "Rockmelon", note: "Can carry listeria or salmonella." },
-      { em: "🌱", name: "Raw sprouts", note: "Bean and alfalfa sprouts." },
-      { em: "🍖", name: "Pâté & liver", note: "Pâté can carry listeria; liver has very high vitamin A." },
-      { em: "🥩", name: "Rare or raw meat", note: "No pink in mince, sausages or pork. Cook it through." },
-      { em: "🍨", name: "Soft-serve ice cream", note: "The machines can grow listeria." },
-      { em: "🥛", name: "Unpasteurised dairy", note: "Raw milk and cheese made from it." },
-      { em: "🧆", name: "Hummus, tahini & halva", note: "Sesame products may carry salmonella." },
-      { em: "⚡", name: "Energy drinks & lots of coffee", note: "Keep caffeine under 200mg a day." },
-      { em: "🍲", name: "Old leftovers", note: "Eat within a day, reheated until steaming hot." }
+      { em: "🍷", name: "Alcohol", note: "No safe amount in pregnancy.", level: "high", germs: ["alcohol"],
+        why: "Alcohol passes straight through the placenta, and baby's liver is too immature to break it down. It can affect baby's brain and body development at any stage of pregnancy.",
+        instead: "Mocktails, sparkling water with lime, alcohol-free beers and wines (check they're under 0.5%).",
+        tips: ["Kombucha, kefir and ginger beer contain small amounts too", "If Laura drank before knowing, that's really common. Mention it to the GP, but don't panic"] },
+      { em: "🧀", name: "Soft & semi-soft cheese", note: "Brie, camembert, blue, ricotta, feta, bocconcini.", level: "high", germs: ["listeria"], ok: "OK cooked until steaming hot",
+        why: "Soft cheeses are moist and less acidic, the perfect place for listeria to grow, even in the fridge.",
+        instead: "Hard cheeses (cheddar, parmesan, tasty). Soft cheese is fine when it's cooked into a hot dish, like baked ricotta, feta on a hot pizza or a camembert bake, eaten straight away.",
+        tips: ["Cooked to 75°C (steaming hot) kills listeria", "Cream cheese, cottage cheese and processed cheese slices are fine if pasteurised"] },
+      { em: "🥪", name: "Deli & sliced meats", note: "Ham, salami, sliced or shredded deli meats and cold cooked chicken.", level: "high", germs: ["listeria"], ok: "OK cooked until steaming hot",
+        why: "Sliced, diced or shredded ready-to-eat meats are handled a lot and then sit in the fridge, where listeria keeps growing.",
+        instead: "Cook a whole roast and slice it yourself, eating leftovers within a couple of days. Or heat deli meat until steaming hot, like ham on a toasted sandwich or salami on pizza.",
+        tips: ["Fermented salami is lower risk than other deli meats, but heating it is safest", "Includes the pre-sliced packets from the supermarket"] },
+      { em: "🍣", name: "Raw seafood & sushi", note: "Raw oysters, sashimi, shop-bought sushi.", level: "high", germs: ["listeria"],
+        why: "Raw seafood can carry listeria, other bacteria and parasites. Shop-bought sushi often sits for hours in display fridges.",
+        instead: "Sushi made fresh at home with cooked fillings, or seafood cooked to 63°C and eaten hot.",
+        tips: ["Includes raw oysters, sashimi, ceviche and poke with raw fish"] },
+      { em: "🐠", name: "Smoked salmon & cold cooked prawns", note: "Cold-smoked seafood and pre-cooked prawns.", level: "high", germs: ["listeria"], ok: "OK cooked into a hot dish",
+        why: "Cold smoking doesn't get hot enough to kill listeria, and pre-cooked prawns sit chilled for days after cooking.",
+        instead: "Toss them into a hot pasta, risotto or stir-fry and cook until steaming. Prawns you cook yourself and eat hot are fine.",
+        tips: ["Includes the chilled seafood platter at Christmas 🎄", "Tinned salmon and tuna are fine"] },
+      { em: "🦈", name: "High-mercury fish", note: "Shark (flake), swordfish, marlin, orange roughy, catfish.", level: "med", germs: ["mercury"],
+        why: "Big predator fish build up mercury over their long lives, and it can affect baby's developing nervous system.",
+        instead: "Salmon, sardines, tinned tuna, snapper, whiting and barramundi: 2–3 serves a week.",
+        tips: ["Shark (flake), swordfish/broadbill, marlin: max one 150g serve a fortnight, and no other fish that fortnight", "Orange roughy (deep sea perch) and catfish: max one serve a week, and no other fish that week", "Ask what fish is in your fish & chips. It's often flake"] },
+      { em: "🥚", name: "Raw or runny eggs", note: "Homemade mayo, aioli, Caesar dressing, mousse, raw batter.", level: "med", germs: ["salmonella"],
+        why: "Raw egg can carry salmonella. Pregnancy doesn't make it more likely, but being sick hits harder, and in rare cases it can cause miscarriage.",
+        instead: "Eggs cooked until the yolk starts to thicken. Shop-bought mayo, aioli and dressings are made with pasteurised egg and are fine.",
+        tips: ["Watch out for homemade custards, tiramisu, mousse, eggnog, hollandaise and Caesar dressing", "No licking the cake batter spoon 🥲", "Don't use cracked or dirty eggs"] },
+      { em: "🥗", name: "Pre-cut salads & fruit", note: "Pre-packed salads, salad bars, fruit cups.", level: "high", germs: ["listeria", "salmonella"],
+        why: "Once fruit and veg are cut and left sitting, listeria can grow on the cut surfaces, even in the fridge.",
+        instead: "Buy whole and cut at home. Fresh, frozen and tinned fruit and veg are all fine.",
+        tips: ["Includes salad bars, buffet salads and pre-cut fruit cups", "Bagged salad leaves: wash well and eat on the day, or skip them"] },
+      { em: "🍈", name: "Pre-cut rockmelon", note: "Rockmelon (cantaloupe) cut by someone else.", level: "high", germs: ["listeria", "salmonella"],
+        why: "Rockmelon's rough, netted skin traps germs, which get dragged into the flesh when it's cut. It's been linked to listeria outbreaks in Australia.",
+        instead: "Buy it whole, scrub the skin, cut it at home and eat it fresh.",
+        tips: ["Watermelon and honeydew are lower risk"] },
+      { em: "🌱", name: "Raw sprouts", note: "Alfalfa, bean, clover, radish sprouts.", level: "high", germs: ["listeria", "salmonella", "ecoli"],
+        why: "Sprouts grow in warm, humid conditions that are perfect for bacteria, and washing doesn't get rid of them.",
+        instead: "Cooked sprouts, like bean sprouts cooked into a hot stir-fry.",
+        tips: ["Check sandwiches, rice paper rolls and pho garnishes"] },
+      { em: "🍖", name: "Fridge pâté & meat pastes", note: "Refrigerated pâté, spreads and terrines.", level: "high", germs: ["listeria", "vitA"],
+        why: "Refrigerated pâté is a known listeria risk, and liver pâté is also very high in vitamin A.",
+        instead: "Shelf-stable pâté in tins or pouches from the pantry aisle (in moderation if it's liver-based).",
+        tips: ["Includes vegetarian/veggie pâté from the fridge too"] },
+      { em: "🫀", name: "Liver & liver products", note: "Very high in vitamin A.", level: "med", germs: ["vitA"],
+        why: "Liver contains huge amounts of retinol (animal vitamin A), and too much can cause birth defects.",
+        instead: "Lean red meat for iron. Carrots and sweet potato for safe plant vitamin A.",
+        tips: ["Also avoid supplements with retinol, like cod liver oil and non-pregnancy multivitamins"] },
+      { em: "🥩", name: "Rare or raw meat", note: "No pink in mince, sausages, burgers or pork.", level: "high", germs: ["toxo", "salmonella", "ecoli", "listeria"],
+        why: "Undercooked meat can carry toxoplasma, salmonella and E. coli. Mince is riskier than whole cuts because germs on the surface get mixed all through.",
+        instead: "Meat cooked to 75°C and eaten hot. Steaks well done.",
+        tips: ["No steak tartare, carpaccio or rare burgers", "Chicken: juices clear, no pink"] },
+      { em: "🍨", name: "Soft-serve ice cream", note: "Soft-serve, thickshakes from soft-serve machines.", level: "high", germs: ["listeria"],
+        why: "Soft-serve machines are hard to clean properly, and the mix is kept at temperatures where listeria can grow.",
+        instead: "Hard-frozen ice cream from a tub, or scooped gelato.",
+        tips: ["Includes thickshakes and sundaes made with soft-serve"] },
+      { em: "🥛", name: "Unpasteurised dairy & juice", note: "Raw milk, raw-milk cheese, unpasteurised juice.", level: "high", germs: ["listeria", "salmonella", "ecoli"],
+        why: "Pasteurising heats milk and juice enough to kill germs. Without it, listeria, salmonella and E. coli can survive.",
+        instead: "Pasteurised milk, cheese and juice. Almost all supermarket products are.",
+        tips: ["Watch for 'raw' or 'unpasteurised' at farmers' markets and cafés", "Some imported cheeses are made from raw milk, so check the label"] },
+      { em: "🧆", name: "Hummus, tahini & halva", note: "Sesame products.", level: "med", germs: ["salmonella"],
+        why: "Sesame products have been linked to salmonella. Hummus that's been sitting out at a café or party is a bigger risk.",
+        instead: "Homemade hummus eaten fresh, or tahini cooked into a hot dish.",
+        tips: ["If having shop-bought, keep it cold and eat it within a couple of days of opening"] },
+      { em: "⚡", name: "Energy drinks & lots of coffee", note: "Keep caffeine under 200mg a day.", level: "med", germs: ["caffeine"],
+        why: "Caffeine crosses the placenta. High amounts are linked to miscarriage and low birth weight.",
+        instead: "Up to 200mg a day: about 1–2 espressos, 3 instant coffees or 4 cups of tea. Decaf is fine.",
+        tips: ["No energy drinks or double-shot coffees", "Cola and chocolate have caffeine too"] },
+      { em: "🍲", name: "Old or lukewarm food", note: "Old leftovers, bain-maries, buffets, warming lamps.", level: "med", germs: ["listeria", "salmonella"],
+        why: "Food that sits warm (but not hot) or in the fridge too long gives bacteria time to multiply.",
+        instead: "Freshly cooked food eaten hot. Leftovers used within a day and reheated until steaming.",
+        tips: ["Cold food: eat within 2 hours of making it", "Never leave leftovers in a warm car", "At buffets, choose hot food only"] }
     ];
-    const foodHTML = arr => arr.map(f => `
-      <div class="food-item">
+
+    const foodHTML = (arr, side) => arr.map((f, i) => `
+      <button type="button" class="food-item" data-side="${side}" data-i="${i}" aria-haspopup="dialog">
         <span class="em" aria-hidden="true">${f.em}</span>
-        <div><b>${esc(f.name)}</b><span>${esc(f.note)}</span>${f.ok ? `<em class="safe">${esc(f.ok)}</em>` : ""}</div>
-      </div>`).join("");
-    document.getElementById("eatList").innerHTML = foodHTML(EAT);
-    document.getElementById("avoidList").innerHTML = foodHTML(AVOID);
+        <div><b>${esc(f.name)}</b><span>${esc(f.note)}</span><em class="lvl lvl-${f.level}">${f.ok ? esc(f.ok) : LEVELS[f.level].tag}</em></div>
+        <span class="more" aria-hidden="true">i</span>
+      </button>`).join("");
+    document.getElementById("eatList").innerHTML = foodHTML(EAT, "eat");
+    document.getElementById("avoidList").innerHTML = foodHTML(AVOID, "avoid");
+
+    document.getElementById("germGrid").innerHTML = GERM_CARDS.map(k => {
+      const g = GERMS[k];
+      return `<div class="card germ"><div class="g-top"><span class="g-ic" aria-hidden="true">${g.em}</span><div><h4>${g.name}</h4><p class="g-in">${g.in}</p></div></div><p>${g.card}</p></div>`;
+    }).join("");
+
+    /* ---------- Food detail sheet ---------- */
+    const sheetWrap = document.getElementById("sheetWrap"), sheet = document.getElementById("sheet"), sheetBody = document.getElementById("sheetBody");
+    let sheetOpener = null, sheetCur = null;
+    function renderSheet(side, i) {
+      const list = side === "eat" ? EAT : AVOID, f = list[i], L = LEVELS[f.level];
+      sheetCur = { type: "food", side, i };
+      const germs = (f.germs || []).map(k => GERMS[k]);
+      sheetBody.innerHTML = `
+        <div class="sh-head">
+          <div class="sh-em" aria-hidden="true">${f.em}</div>
+          <div><h3 id="shTitle">${esc(f.name)}</h3><p>${esc(f.note)}</p></div>
+        </div>
+        <div class="meter">
+          <div class="meter-top"><b class="lvl-${f.level}" style="background:none">${L.label}</b><small>Risk level</small></div>
+          <div class="meter-bar l${L.n}" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <div class="meter-scale"><span>Enjoy</span><span>Avoid</span></div>
+          <p style="margin:.6rem 0 0;font-weight:500">${L.long}${f.ok ? ` · <span class="lvl-safe" style="background:none">${esc(f.ok)}</span>` : ""}</p>
+        </div>
+        <div class="sh-sec"><h4>${side === "eat" ? "Why it's good" : "Why it's a risk"}</h4><p>${esc(f.why)}</p></div>
+        ${germs.length ? `<div class="sh-sec"><h4>${side === "eat" ? "Things to watch for" : "What could cause harm"}</h4>${germs.map(g => `
+          <div class="germ-chip"><span class="g-ic" aria-hidden="true">${g.em}</span><div><b>${g.name}</b><span>${esc(g.short)}</span></div></div>`).join("")}</div>` : ""}
+        ${f.instead ? `<div class="sh-sec"><h4>Safer swap</h4><div class="swap"><i aria-hidden="true">💚</i><span>${esc(f.instead)}</span></div></div>` : ""}
+        ${f.tips && f.tips.length ? `<div class="sh-sec"><h4>Good to know</h4><ul class="sh-tips">${f.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>` : ""}
+        <div class="sh-nav">
+          <button class="btn btn-ghost" data-step="-1" ${i === 0 ? "disabled style=\"opacity:.4\"" : ""}>← Previous</button>
+          <button class="btn btn-ghost" data-step="1" ${i === list.length - 1 ? "disabled style=\"opacity:.4\"" : ""}>Next →</button>
+        </div>
+        <p class="sh-src">Based on NSW Food Authority, FSANZ and Pregnancy, Birth &amp; Baby advice. General info only. Check with your GP or midwife.</p>`;
+      sheet.scrollTop = 0;
+    }
+    function openSheet(side, i, opener) {
+      sheetOpener = opener; renderSheet(side, i);
+      sheetWrap.classList.add("open"); sheetWrap.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => sheet.querySelector(".sheet-close").focus({ preventScroll: true }), 50);
+    }
+    function closeSheet() {
+      if (!sheetWrap.classList.contains("open")) return;
+      sheetWrap.classList.remove("open"); sheetWrap.setAttribute("aria-hidden", "true");
+      sheet.style.transform = "";
+      document.body.style.overflow = "";
+      sheetOpener && sheetOpener.focus({ preventScroll: true });
+    }
+    document.getElementById("view-food").addEventListener("click", e => {
+      const b = e.target.closest(".food-item"); if (b) openSheet(b.dataset.side, +b.dataset.i, b);
+    });
+    sheetWrap.addEventListener("click", e => {
+      if (e.target.closest("[data-close]")) closeSheet();
+      const s = e.target.closest("[data-step]");
+      if (s && !s.disabled) sheetCur.type === "note" ? renderNote(sheetCur.i + +s.dataset.step) : renderSheet(sheetCur.side, sheetCur.i + +s.dataset.step);
+    });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    window.addEventListener("hashchange", closeSheet);
+    // Swipe down to close on phones
+    let dragY = null;
+    sheet.addEventListener("touchstart", e => { dragY = sheet.scrollTop <= 0 ? e.touches[0].clientY : null; }, { passive: true });
+    sheet.addEventListener("touchmove", e => {
+      if (dragY === null) return;
+      const dy = e.touches[0].clientY - dragY;
+      if (dy > 0) { sheet.style.transition = "none"; sheet.style.transform = `translateY(${dy}px)`; }
+    }, { passive: true });
+    sheet.addEventListener("touchend", e => {
+      if (dragY === null) return;
+      const dy = e.changedTouches[0].clientY - dragY; dragY = null;
+      sheet.style.transition = "";
+      if (dy > 110) closeSheet(); else sheet.style.transform = "";
+    });
+
+    /* ---------- Along the way (things we learn) ----------
+       Newest at the bottom. To add one, copy a block and change it.
+       em · title · line (short, on the tile) · tag · why · todo (list) · flag (optional): "call" or "check"
+       verdict (optional): a short fact-check shown at the top */
+    const NOTE_TAGS = { body: ["Body", "#f4d9dc"], food: ["Food", "#e8f0e4"], safety: ["Safety", "#fbe0e5"], mind: ["Mind", "#ebe4f3"], apps: ["Apps", "#fff4e6"] };
+    const NOTES = [
+      { em: "🍬", title: "Jelly beans by the bed", tag: "body", line: "Something small to nibble before getting up.",
+        why: "Morning sickness is often worst first thing, when your stomach is empty and blood sugar is low. Eating a little before you even sit up can take the edge off the nausea and the light-headedness.",
+        todo: ["Keep a few jelly beans or plain crackers on the bedside table", "Nibble, wait 10–15 minutes, then get up slowly", "Dry crackers or ginger biscuits work too. Use them instead if the glucose test ever shows gestational diabetes"] },
+      { em: "🪑", title: "Get up slowly", tag: "body", line: "Lying → sitting → standing, in stages.",
+        why: "Pregnancy hormones relax your blood vessels and blood pressure drops, especially in the first and second trimester. Standing up quickly lets blood pool in the legs, so you can feel dizzy or even faint.",
+        todo: ["Roll onto your side, push up to sitting, pause, then stand", "Same after a hot shower or a long sit", "If you feel faint: sit or lie down on your left side and drink some water", "Fainting, or dizziness with a headache or blurry vision: call the GP or midwife"] },
+      { em: "🩸", title: "Bleeding always needs to be checked", tag: "safety", flag: "call", line: "Any bleeding: call, don't wait and see.",
+        verdict: ["call", "Always call. Light spotting is common early on and often nothing, but it has to be checked by someone who can examine Laura."],
+        why: "Bleeding can be harmless (like implantation or a sensitive cervix), but it can also be a sign of miscarriage, ectopic pregnancy or a problem with the placenta later on. If Laura's blood type is Rh negative, she may also need an Anti-D injection after any bleeding.",
+        todo: ["Any bleeding: call the GP, midwife or the hospital's pregnancy assessment / maternity unit", "Heavy bleeding, bad pain, feeling faint, or shoulder-tip pain: go to Emergency or call 000", "Wear a pad (not a tampon) so you can tell them how much", "Save the hospital's maternity phone number in both phones now"] },
+      { em: "🌿", title: "Peppermint tea", tag: "food", line: "Caffeine-free, good for nausea and bloating.",
+        why: "Peppermint can settle a queasy stomach, wind and bloating, and it's caffeine-free, so it doesn't count towards the 200mg limit. It's considered safe in normal amounts.",
+        todo: ["A few cups a day is fine", "Later in pregnancy, if it makes heartburn worse (it relaxes the valve at the top of the stomach), swap to ginger tea", "Stick to plain peppermint, not mixed 'herbal blends' with unknown herbs"] },
+      { em: "🥬", title: "Eat lots of folate from leafy greens", tag: "food", line: "Spinach, broccoli, asparagus, legumes.",
+        verdict: ["yes", "True, but food alone isn't enough. Keep taking the folic acid supplement as well."],
+        why: "Folate helps baby's brain and spinal cord (the neural tube) form properly in the first few weeks, which lowers the risk of spina bifida. It also helps make red blood cells.",
+        todo: ["Leafy greens, broccoli, asparagus, chickpeas, lentils, avocado, oranges", "Keep taking a supplement with at least 400mcg folic acid every day, ideally through the first trimester", "Most Aussie bread is fortified with folic acid too"] },
+      { em: "🥝", title: "2 kiwis a day", tag: "food", line: "Two green kiwifruit for constipation.",
+        verdict: ["yes", "Good one. Studies show two green kiwifruit a day helps keep things moving, and they're full of vitamin C."],
+        why: "Pregnancy hormones and iron supplements slow the gut down, so constipation is really common. Kiwifruit has fibre plus an enzyme (actinidin) that helps digestion. The vitamin C also helps Laura absorb iron from food.",
+        todo: ["Two green kiwis a day: scoop them or eat them skin and all", "Wash them first", "Drink plenty of water with the extra fibre"] },
+      { em: "📱", title: "Download the Pregnancy+ app", tag: "apps", line: "Week-by-week sizes, 3D images and tools.",
+        why: "A nice way to follow along each week: baby's size, 3D images, and a kick counter and contraction timer for later on. It's also in the Learn → Apps tab.",
+        todo: ["Free on the App Store", "Enter the due date so the weeks match this site", "Grant can download it too and follow along"], link: "https://apps.apple.com/au/search?term=pregnancy%2B" },
+      { em: "💧", title: "Dehydration can trigger contractions", tag: "body", flag: "check", line: "Stay well hydrated, especially in the third trimester.",
+        verdict: ["check", "Partly true. Dehydration can make the uterus more irritable and set off Braxton Hicks (practice) contractions. The link to actually going into early labour is weak, but drinking well is good advice anyway."],
+        why: "When you're dehydrated, your body releases a hormone (vasopressin) that's very similar to oxytocin, the hormone that makes the uterus contract. Your blood volume also drops, which can make the uterus tighten. Drinking water and resting often settles practice contractions.",
+        todo: ["Aim for around 8–10 glasses of fluid a day, and more in hot weather or after exercise", "Pale yellow wee = good", "Tightenings before 37 weeks: drink 2 glasses of water and lie on your side. If they keep coming regularly, call the hospital", "Before 37 weeks, always call for: waters breaking, bleeding, regular painful contractions, or baby moving less"] },
+      { em: "✨", title: "Daily affirmations", tag: "mind", line: "A few kind words to yourself each day.",
+        why: "Pregnancy can bring a lot of worry. Short positive phrases, said each day, can help calm anxiety and build confidence for the birth. Plenty of birth classes use them for labour too.",
+        todo: ["Try: \"My body knows how to grow this baby.\" \"I trust myself.\" \"One day at a time.\"", "Write them on the bathroom mirror or set one as the phone lock screen", "Grant can say them too 💕", "If worry or low mood sticks around, talk to the GP or PANDA (1300 726 306)"] }
+    ];
+
+    const noteGrid = document.getElementById("noteGrid"), noteFilters = document.getElementById("noteFilters");
+    let noteFilter = "all";
+    const allNotes = () => NOTES.concat((store.get("myNotes") || []).map(t => ({ em: "📝", title: t, tag: "mine", line: "Pasted on this phone", mine: true })));
+    function renderNotes() {
+      const notes = allNotes();
+      const tags = ["all", ...Object.keys(NOTE_TAGS).filter(k => notes.some(n => n.tag === k)), ...(notes.some(n => n.mine) ? ["mine"] : [])];
+      noteFilters.innerHTML = tags.map(t => `<button class="chip" data-f="${t}" aria-pressed="${t === noteFilter}">${t === "all" ? "All" : t === "mine" ? "Just pasted" : NOTE_TAGS[t][0]}</button>`).join("");
+      noteGrid.innerHTML = notes.map((n, i) => (noteFilter !== "all" && n.tag !== noteFilter) ? "" : `
+        <button type="button" class="card note${n.mine ? " mine" : ""}" data-n="${i}" aria-haspopup="dialog">
+          <div class="note-top"><span class="note-em" style="background:${(NOTE_TAGS[n.tag] || [, "var(--bg-3)"])[1]}" aria-hidden="true">${n.em}</span><span class="note-num">#${i + 1}</span></div>
+          <h4>${esc(n.title)}</h4>
+          <p class="n-line">${esc(n.line)}</p>
+          <div class="note-tags">
+            ${n.tag !== "mine" ? `<span class="ntag">${NOTE_TAGS[n.tag][0]}</span>` : `<span class="ntag">On this phone</span>`}
+            ${n.flag === "call" ? `<span class="ntag flag-call">Always call</span>` : ""}
+            ${n.flag === "check" ? `<span class="ntag flag-check">Fact-checked</span>` : ""}
+          </div>
+        </button>`).join("");
+      document.getElementById("noteClear").hidden = !(store.get("myNotes") || []).length;
+    }
+    noteFilters.addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) { noteFilter = c.dataset.f; renderNotes(); } });
+    noteGrid.addEventListener("click", e => { const b = e.target.closest(".note"); if (b) openNote(+b.dataset.n, b); });
+    document.getElementById("noteAdd").addEventListener("click", () => {
+      const inp = document.getElementById("noteInput");
+      const lines = inp.value.split(/\n+/).map(l => l.replace(/^\s*[-•*–]\s*/, "").trim()).filter(Boolean);
+      if (!lines.length) return;
+      const known = allNotes().map(n => n.title.toLowerCase());
+      const fresh = lines.filter(l => !known.includes(l.toLowerCase()));
+      store.set("myNotes", (store.get("myNotes") || []).concat(fresh));
+      inp.value = ""; noteFilter = "all"; renderNotes();
+    });
+    document.getElementById("noteClear").addEventListener("click", () => { store.set("myNotes", []); noteFilter = "all"; renderNotes(); });
+
+    function renderNote(i) {
+      const notes = allNotes(), n = notes[i];
+      sheetCur = { type: "note", i, max: notes.length - 1 };
+      const V = { call: "🚨", check: "🔎", yes: "✅" };
+      sheetBody.innerHTML = `
+        <div class="sh-head">
+          <div class="sh-em" style="background:${(NOTE_TAGS[n.tag] || [, "var(--bg-3)"])[1]}" aria-hidden="true">${n.em}</div>
+          <div><h3 id="shTitle">${esc(n.title)}</h3><p>${esc(n.line)}</p></div>
+        </div>
+        ${n.mine ? `<div class="sh-sec"><p>Pasted on this phone. Send it to Claude and it'll be added with why it matters and what to do.</p></div>` : `
+        ${n.verdict ? `<div class="sh-sec"><h4>Fact check</h4><div class="verdict ${n.verdict[0]}"><i aria-hidden="true">${V[n.verdict[0]]}</i><span>${esc(n.verdict[1])}</span></div></div>` : ""}
+        <div class="sh-sec"><h4>Why</h4><p>${esc(n.why)}</p></div>
+        <div class="sh-sec"><h4>What to do</h4><ul class="sh-tips">${n.todo.map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
+        ${n.link ? `<div class="sh-sec"><a class="btn btn-primary" href="${n.link}" target="_blank" rel="noopener">Open in the App Store →</a></div>` : ""}`}
+        <div class="sh-nav">
+          <button class="btn btn-ghost" data-step="-1" ${i === 0 ? "disabled style=\"opacity:.4\"" : ""}>← Previous</button>
+          <button class="btn btn-ghost" data-step="1" ${i === notes.length - 1 ? "disabled style=\"opacity:.4\"" : ""}>Next →</button>
+        </div>
+        <p class="sh-src">General info only. Always check with your GP, midwife or obstetrician.</p>`;
+      sheet.scrollTop = 0;
+    }
+    function openNote(i, opener) {
+      sheetOpener = opener; renderNote(i);
+      sheetWrap.classList.add("open"); sheetWrap.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => sheet.querySelector(".sheet-close").focus({ preventScroll: true }), 50);
+    }
+    renderNotes();
 
     /* ---------- Hospital checklists ---------- */
     const CHECKLISTS = {
@@ -1071,7 +1593,7 @@
        VIEW SWITCHING (reads the #hash in the URL)
        #timeline, #food, #hospital, #learn, #learn/books …
        ========================================================= */
-    const VIEWS = ["timeline", "food", "hospital", "learn"];
+    const VIEWS = ["timeline", "food", "hospital", "along", "learn"];
     const hamburger = document.getElementById("hamburger"), sideNav = document.getElementById("sideNav");
     const learnToggle = document.getElementById("learnToggle"), learnMenu = document.getElementById("learnMenu");
     const sideLearnToggle = document.getElementById("sideLearnToggle"), sideLearn = document.getElementById("sideLearn");

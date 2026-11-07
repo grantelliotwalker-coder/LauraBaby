@@ -308,6 +308,76 @@
     .jump-now { position: fixed; right: max(16px, env(safe-area-inset-right)); bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 50; box-shadow: var(--shadow); }
     .jump-now[hidden] { display: none; }
 
+    /* ---------- Look-ahead slider ---------- */
+    .scrub { padding: clamp(1.25rem, 3vw, 2rem); margin-bottom: clamp(2.5rem, 6vw, 4rem); position: relative; overflow: hidden; }
+    .scrub::before { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; background: radial-gradient(circle, #f1e6f6, transparent 70%); left: -160px; bottom: -220px; pointer-events: none; }
+    .scrub > * { position: relative; }
+    .sc-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+    .sc-head .eyebrow { margin-bottom: .35rem; }
+    .sc-head h2 { font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
+    .sc-head h2 em { font-style: italic; font-weight: 400; color: var(--rose); }
+    .sc-track { position: relative; padding: 18px 0 4px; }
+    .sc-mark { position: absolute; top: 0; transform: translateX(-50%); font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--rose); white-space: nowrap; pointer-events: none; }
+    .sc-mark::after { content: ""; display: block; width: 2px; height: 9px; background: var(--rose); margin: 2px auto 0; border-radius: 2px; }
+    .sc-mark[hidden] { display: none; }
+    #scRange { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; background: transparent; cursor: pointer; margin: 0; touch-action: pan-y; }
+    #scRange::-webkit-slider-runnable-track { height: 12px; border-radius: 99px; background: linear-gradient(90deg, var(--rose-2), var(--rose) var(--p, 0%), var(--bg-3) var(--p, 0%)); }
+    #scRange::-moz-range-track { height: 12px; border-radius: 99px; background: linear-gradient(90deg, var(--rose-2), var(--rose) var(--p, 0%), var(--bg-3) var(--p, 0%)); }
+    #scRange::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; margin-top: -9px; border-radius: 50%; background: #fff; border: 3px solid var(--rose); box-shadow: 0 4px 12px rgba(192,98,125,.35); }
+    #scRange::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: #fff; border: 3px solid var(--rose); box-shadow: 0 4px 12px rgba(192,98,125,.35); }
+    #scRange:focus-visible { outline: none; }
+    #scRange:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 6px rgba(192,98,125,.25); }
+    .sc-ticks { position: relative; height: 1.2rem; font-size: .72rem; color: var(--muted); margin: 0 14px; }
+    .sc-ticks span { position: absolute; transform: translateX(-50%); }
+    .sc-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-top: 1.25rem; }
+    .sc-week { font-family: var(--display); font-size: clamp(2rem, 5vw, 2.8rem); line-height: 1; font-variation-settings: "SOFT" 100, "WONK" 1; }
+    .sc-week b { color: var(--rose); }
+    .sc-when { margin: .4rem 0 0; color: var(--muted); font-size: .95rem; }
+    .sc-when b { color: var(--ink); font-weight: 600; }
+    .sc-tri { flex: none; font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; background: #ebe4f3; color: #7a5ea3; padding: .35rem .75rem; border-radius: 99px; }
+    .sc-body { display: grid; grid-template-columns: 240px 1fr; gap: clamp(1rem, 3vw, 2.5rem); margin-top: 1.25rem; align-items: start; }
+    .sc-size { display: flex; flex-direction: column; align-items: center; text-align: center; gap: .75rem; }
+    .sc-ball { width: 220px; height: 220px; display: grid; place-items: center; }
+    .sc-ball span {
+      width: var(--d); height: var(--d); border-radius: 50%; display: grid; place-items: center;
+      background: radial-gradient(circle at 35% 30%, #fff, var(--blush) 70%); box-shadow: 0 10px 30px -10px rgba(192,98,125,.45);
+      font-size: calc(var(--d) * .45); transition: width .35s cubic-bezier(.2,.8,.2,1), height .35s cubic-bezier(.2,.8,.2,1), font-size .35s;
+    }
+    .sc-size p { margin: 0; line-height: 1.4; }
+    .sc-size b { font-family: var(--display); font-size: 1.25rem; }
+    .sc-size small { color: var(--muted); }
+    .sc-info h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); margin-bottom: .8rem; }
+    .sc-fact { background: var(--bg); border-radius: 16px; padding: .8rem 1rem; margin-bottom: .5rem; border-left: 3px solid var(--rose-2); }
+    .sc-fact.mum { border-left-color: var(--lilac); }
+    .sc-fact b { display: block; font-size: .95rem; }
+    .sc-fact p { margin: .2rem 0 0; font-size: .93rem; line-height: 1.5; color: var(--ink); }
+    .sc-actions { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .9rem; }
+
+    /* ---------- Science button + panel ---------- */
+    .tl-foot { display: flex; justify-content: flex-end; margin-top: 1rem; }
+    .sci-btn { font-size: .9rem; }
+    .sci-kicker { margin: 0 0 .3rem !important; font-size: .74rem !important; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--rose) !important; }
+    .sci-intro { margin: 1.2rem 0 0; font-size: 1.05rem; line-height: 1.6; padding: 1rem 1.1rem; border-radius: 16px; background: linear-gradient(120deg, #fff4f6, #f6f0fb); }
+    .sh-sec h4 .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: .45rem; vertical-align: middle; }
+    .dot.baby { background: var(--rose); } .dot.mum { background: var(--lilac); } .dot.feel { background: var(--gold); }
+    .sci-item { padding: .75rem 0; border-bottom: 1px solid var(--line); }
+    .sci-item:last-child { border-bottom: 0; }
+    .sci-item b { display: block; font-size: 1rem; }
+    .sci-item p { margin: .25rem 0 0; line-height: 1.6; font-size: .97rem; }
+    .sci-sys { display: flex; gap: .8rem; align-items: flex-start; background: var(--bg); border-radius: 16px; padding: .85rem 1rem; }
+    .sci-sys + .sci-sys { margin-top: .5rem; }
+    .sci-sys > span { font-size: 1.3rem; line-height: 1.3; flex: none; }
+    .sci-sys b { display: block; }
+    .sci-sys p { margin: .2rem 0 0; line-height: 1.55; font-size: .95rem; }
+    .sci-nums { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: .5rem; }
+    .sci-nums div { background: var(--bg); border-radius: 14px; padding: .7rem .85rem; }
+    .sci-nums small { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .sci-nums b { display: block; margin-top: .2rem; font-weight: 600; font-size: .95rem; line-height: 1.4; }
+    .sh-src ul { margin: .4rem 0 .6rem; padding-left: 1.1rem; }
+    .sh-src a { color: var(--rose); }
+    .sheet.wide { max-width: 760px; }
+    .fetal-age { margin: -.6rem 0 1rem; font-size: .88rem; color: #7a5ea3; background: #f3eef9; padding: .45rem .7rem; border-radius: 10px; }
+
     /* =========================================================
        FOOD
        ========================================================= */
@@ -564,6 +634,13 @@
       .food-item .em { font-size: 1.3rem; }
       .food-item b { font-size: .92rem; }
       .food-item span { font-size: .8rem; }
+      .sc-body { grid-template-columns: 1fr; }
+      .sc-ball { width: 170px; height: 170px; }
+      .sc-ball span { width: min(var(--d), 160px); height: min(var(--d), 160px); font-size: calc(min(var(--d), 160px) * .45); }
+      .sc-top { flex-direction: column; gap: .6rem; }
+      .tl-foot .btn { width: 100%; }
+      .sci-nums { grid-template-columns: 1fr 1fr; }
+      .sc-actions .btn { flex: 1 1 auto; }
       .germs { grid-template-columns: 1fr; }
       .habits { grid-template-columns: 1fr; }
       .food-item .more { right: .45rem; top: .5rem; width: 20px; height: 20px; font-size: .7rem; }
@@ -645,7 +722,7 @@
           <div class="tl-hero-copy">
             <p class="eyebrow">We're having a baby</p>
             <h1 class="page-title">Hello, <em>little one.</em></h1>
-            <p class="lede">Forty weeks, two weeks at a time. What's happening with baby, what Laura might be feeling, and the little jobs to tick off along the way.</p>
+            <p class="lede">Forty weeks, two weeks at a time: what's happening with baby, what's going on in Laura's body, and the little jobs to tick off. Slide ahead to see what's coming, or tap <b>Read the science</b> on any stage for the full detail.</p>
           </div>
 
           <div class="card due-card" id="dueCard">
@@ -655,11 +732,28 @@
               <div class="seg" role="group" aria-label="Date type">
                 <button type="button" data-mode="due" aria-pressed="true">Due date</button>
                 <button type="button" data-mode="lmp" aria-pressed="false">Last period</button>
+                <button type="button" data-mode="conc" aria-pressed="false">Conception</button>
               </div>
               <input type="date" id="dueInput" aria-label="Date" />
             </form>
           </div>
         </div>
+
+        <section class="card scrub" aria-label="Look ahead">
+          <div class="sc-head">
+            <div>
+              <p class="eyebrow">Look ahead</p>
+              <h2>Slide through the <em>weeks</em></h2>
+            </div>
+            <button class="btn btn-ghost" id="scToday" hidden>📍 Back to today</button>
+          </div>
+          <div class="sc-track">
+            <span class="sc-mark" id="scMark" hidden>Today</span>
+            <input type="range" id="scRange" min="1" max="42" step="1" value="4" aria-label="Pregnancy week" />
+            <div class="sc-ticks" aria-hidden="true"><span style="left:0">1</span><span style="left:29.3%">13</span><span style="left:63.4%">27</span><span style="left:95.1%">40</span></div>
+          </div>
+          <div id="scOut"></div>
+        </section>
 
         <div class="tl-toolbar">
           <div>
@@ -970,7 +1064,7 @@
         mum: ["Energy often comes back — the 'honeymoon' trimester", "Appetite returns"],
         todo: ["Tell work when ready and start planning parental leave", "Look up antenatal classes — some book out early"] },
       { w: [15, 16], em: "🥑", size: "An avocado · about 10–12cm", title: "Baby can hear",
-        baby: ["Can hear muffled sounds — including your voices", "Skeleton is hardening", "Can sense light through the belly"],
+        baby: ["Tiny ear bones are hardening. Baby starts reacting to sound around 19–20 weeks", "Skeleton is hardening fast", "Practising breathing and swallowing amniotic fluid", "Can sense bright light through the belly"],
         mum: ["First flutters (quickening) can come anywhere from 16–22 weeks", "Some 'round ligament' twinges as the uterus grows"],
         todo: ["Routine check-up", "Comfy maternity clothes shopping 🛍️", "Gentle exercise: walks, swimming, pregnancy yoga or pilates"] },
       { w: [17, 18], em: "🍠", size: "A sweet potato · about 13–14cm", title: "Little fat layers",
@@ -1057,6 +1151,7 @@
             <div class="tl-col mum"><h5><i></i>Laura</h5><ul>${list(b.mum)}</ul></div>
             <div class="tl-col todo"><h5><i></i>To do</h5><ul>${list(b.todo)}</ul></div>
           </div>
+          <div class="tl-foot"><button class="btn btn-ghost sci-btn" data-i="${i}" aria-haspopup="dialog">🔬 Read the science</button></div>
         </article>`;
     });
     tlEl.innerHTML = tlHTML;
@@ -1071,6 +1166,7 @@
     const DAY = 86400000;
     const dueOut = document.getElementById("dueOut"), dueInput = document.getElementById("dueInput"), jumpNow = document.getElementById("jumpNow");
     let mode = "due";
+    const OFFSET = { due: 0, lmp: 280, conc: 266 }; // days from that date to the due date
     const parse = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
     const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
     const fmt = d => d.toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "long", year: "numeric" });
@@ -1079,8 +1175,8 @@
       const due = store.get("due") || DUE_DATE;
       tlEl.querySelectorAll(".tl-item").forEach(el => { el.classList.remove("now", "past"); el.querySelector(".now-badge")?.remove(); });
       if (!due) {
-        dueOut.innerHTML = `<div class="due-week">Week <em>?</em></div><p class="due-sub due-empty">Add the due date (or the first day of Laura's last period) and we'll show exactly where you're up to.</p>`;
-        jumpNow.hidden = true; return;
+        dueOut.innerHTML = `<div class="due-week">Week <em>?</em></div><p class="due-sub due-empty">Add the due date, the first day of Laura's last period, or the conception date, and we'll show exactly where you're up to.</p>`;
+        jumpNow.hidden = true; syncScrub(null); return;
       }
       const dueD = parse(due), today = new Date(); today.setHours(0, 0, 0, 0);
       const days = Math.max(0, 280 - Math.round((dueD - today) / DAY));
@@ -1090,6 +1186,7 @@
       dueOut.innerHTML = `
         <div class="due-week">${wk} weeks <em>+ ${dy} day${dy === 1 ? "" : "s"}</em></div>
         <p class="due-sub">Due ${fmt(dueD)}</p>
+        <p class="fetal-age">${days >= 14 ? `🔬 Baby's actual age since conception: <b>${Math.floor((days - 14) / 7)} weeks + ${(days - 14) % 7} days</b>` : `🔬 Conception usually happens around 2 weeks after the last period`}</p>
         <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(pct)}"><span style="width:${pct}%"></span></div>
         <div class="progress-marks"><span style="left:0">Wk 0</span><span style="left:32.5%">13</span><span style="left:67.5%">27</span><span style="left:100%">40</span></div>
         <div class="due-stats">
@@ -1097,7 +1194,7 @@
           <div><b>${Math.round(pct)}%</b><small>of the way</small></div>
           <div><b>${tri}${["", "st", "nd", "rd"][tri]}</b><small>trimester</small></div>
         </div>`;
-      dueInput.value = mode === "due" ? due : iso(new Date(dueD - 280 * DAY));
+      dueInput.value = iso(new Date(dueD - OFFSET[mode] * DAY));
       const cur = Math.min(TIMELINE.length - 1, Math.floor(wk / 2));
       tlEl.querySelectorAll(".tl-item").forEach(el => {
         const i = +el.dataset.i;
@@ -1105,6 +1202,7 @@
         if (i === cur) { el.classList.add("now"); el.querySelector(".tl-weeks").insertAdjacentHTML("beforeend", `<span class="now-badge">We're here</span>`); }
       });
       jumpNow.hidden = false;
+      syncScrub(Math.min(42, Math.max(1, wk + 1)));
     }
     document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
       mode = b.dataset.mode;
@@ -1114,7 +1212,7 @@
     dueInput.addEventListener("change", () => {
       if (!dueInput.value) return;
       const d = parse(dueInput.value);
-      store.set("due", mode === "due" ? dueInput.value : iso(new Date(d.getTime() + 280 * DAY)));
+      store.set("due", iso(new Date(d.getTime() + OFFSET[mode] * DAY)));
       renderDue();
     });
     document.getElementById("dueForm").addEventListener("submit", e => e.preventDefault());
@@ -1123,6 +1221,554 @@
       document.querySelector(".chip[data-tri='all']").click();
       tlEl.querySelector(".tl-item.now")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
+
+    /* ---------- The science ----------
+       One entry per 2-week block, in the same order as TIMELINE.
+       intro · baby: [label, text] · body: [icon, system, text] · feel: [symptom, why] · nums: [label, value]
+       In the first trimester, baby notes are labelled week by week because things change so fast. */
+    const SCI = [
+      { // Weeks 1–2
+        intro: "Pregnancy is dated from the first day of the last period (gestational age), because that's a date most people know. Conception usually happens around day 14, so for the first two 'weeks of pregnancy' there's no baby yet. The body is getting an egg and the uterus lining ready.",
+        baby: [
+          ["Week 1 · Menstrual phase", "The old uterus lining sheds. At the same time, a rise in FSH (follicle-stimulating hormone) from the pituitary gland in the brain recruits a group of follicles in the ovaries. Each is a fluid-filled sac holding an immature egg."],
+          ["Week 2 · Follicular phase & ovulation", "One dominant follicle wins out and grows to about 2cm. It pumps out oestradiol (oestrogen), which rebuilds and thickens the uterus lining (the endometrium). When oestrogen gets high enough it triggers a surge of LH (luteinising hormone), and the follicle releases its egg about 24–36 hours later. That's ovulation."],
+          ["The egg", "About 0.1mm across, one of the largest cells in the human body and just visible to the naked eye. It can be fertilised for only about 12–24 hours after release, while sperm can survive up to about 5 days. That's why the fertile window is roughly the 5 days before ovulation plus ovulation day."]
+        ],
+        body: [
+          ["🧪", "Hormones", "FSH rises first, then oestrogen climbs as the follicle grows, then the LH surge triggers ovulation. Progesterone stays low until after ovulation."],
+          ["🌸", "Uterus & cervix", "Oestrogen thickens the endometrium from about 1–2mm to 8–12mm. Cervical mucus turns clear, slippery and stretchy (like raw egg white) so sperm can swim through it."],
+          ["🌡️", "Temperature", "After ovulation, progesterone nudges resting body temperature up by about 0.3–0.5°C. This is the shift people track on fertility apps."]
+        ],
+        feel: [
+          ["Egg-white mucus", "High oestrogen changes the mucus so it's thinner and stretchier, which is the body's sign that ovulation is close."],
+          ["One-sided twinge (mittelschmerz)", "Some women feel a brief ache on one side as the follicle stretches and releases the egg."]
+        ],
+        nums: [["Cycle length", "Usually 21–35 days; ovulation about 14 days before the next period"], ["Egg size", "~0.1mm"], ["Fertile window", "~6 days"]]
+      },
+      { // Weeks 3–4
+        intro: "Conception and implantation. In two weeks a single cell becomes a ball of hundreds of cells and burrows into the uterus wall, then starts sending out the hormone that a pregnancy test picks up.",
+        baby: [
+          ["Week 3 · Fertilisation", "In the outer part of the fallopian tube, one sperm fuses with the egg. The egg instantly hardens its outer shell so no other sperm can get in. The two sets of 23 chromosomes combine into a zygote with 46, a brand-new genome. Baby's sex is set right now: the sperm carried either an X (girl) or a Y (boy)."],
+          ["Week 3 · Cleavage", "As it drifts down the tube, the zygote divides: 2 cells, 4, 8, then a solid ball of about 16 called a morula (Latin for mulberry) by day 3–4. It doesn't get bigger yet; the cells just get smaller."],
+          ["Week 3 · Blastocyst", "Around day 5 it becomes a hollow blastocyst with two parts: a small inner cell mass that will become baby, and an outer shell (the trophoblast) that will become the placenta."],
+          ["Week 4 · Implantation", "About 6–10 days after fertilisation, the blastocyst 'hatches' and buries itself in the uterus lining. The trophoblast grows finger-like projections into the lining and taps into tiny blood vessels. This is the very beginning of the placenta."],
+          ["Week 4 · Two layers", "The inner cell mass flattens into a disc two cells thick (the epiblast and hypoblast). Two little sacs form either side: the amniotic cavity, which becomes the bag of waters, and the yolk sac, which feeds the embryo until the placenta takes over."]
+        ],
+        body: [
+          ["🧪", "hCG", "The implanting trophoblast starts making hCG (human chorionic gonadotropin). Its job is to keep the corpus luteum, the leftover follicle in the ovary, alive and making progesterone. That's what stops the period coming."],
+          ["🧪", "Progesterone", "Keeps the uterus lining thick and nourishing, calms uterus muscle so it doesn't contract, and is the main reason for early tiredness."],
+          ["🌸", "Uterus", "The lining around the embryo transforms into the 'decidua', a specialised, nutrient-rich tissue that also helps protect the embryo from the mother's immune system."],
+          ["🛡️", "Immune system", "Half of baby's genes are from Grant, so to Laura's body it is partly 'foreign'. Special immune cells in the uterus lining (uterine NK cells) switch to helping build blood vessels for the placenta instead of attacking."]
+        ],
+        feel: [
+          ["Light spotting", "As the trophoblast digs in it can break tiny blood vessels, causing a little 'implantation bleeding' around when a period would be due. Any bleeding should still be mentioned to the GP."],
+          ["Sore, full breasts", "Rising progesterone and oestrogen increase blood flow and start growing milk ducts. Often one of the first signs."],
+          ["Tiredness", "Progesterone has a sedating effect on the brain."]
+        ],
+        nums: [["hCG first detectable", "In blood ~8–10 days after ovulation"], ["hCG at 4 weeks", "~5–426 mIU/mL"], ["hCG doubling time", "Roughly every 2–3 days early on"], ["Home test sensitivity", "Most detect ~10–25 mIU/mL"]]
+      },
+      { // Weeks 5–6
+        intro: "The start of the embryonic period, and the most important building phase of the whole pregnancy. The body plan is laid out, the heart begins to beat, and the brain and spinal cord form. Most major birth defects start in this window, which is why folate matters so much.",
+        baby: [
+          ["Week 5 · Gastrulation", "Cells in the flat disc migrate through a groove called the primitive streak and sort themselves into three layers. Every organ comes from these: the ectoderm (skin, hair, brain, nerves, eyes), the mesoderm (heart, blood, muscle, bone, kidneys) and the endoderm (lining of the gut and lungs, liver, pancreas, thyroid)."],
+          ["Week 5 · First heartbeat", "Two tubes of heart cells fuse into one, and around 22 days after conception it starts to beat. The heart is the first organ to work, because a growing embryo can no longer get enough oxygen by diffusion alone."],
+          ["Week 6 · Neural tube closes", "A strip of ectoderm (the neural plate) folds up and zips shut into a tube: the future brain at the top and the spinal cord below. The head end closes around day 25 after conception and the tail end around day 28. If it doesn't close fully, the result is spina bifida or anencephaly. Folic acid lowers that risk by up to about 70%."],
+          ["Week 6 · Buds and arches", "Arm buds appear around day 26 after conception and leg buds a couple of days later. Ridges in the neck (pharyngeal arches) will form the jaw, middle ear, throat and parts of the face. The eyes begin as two outpouchings of the brain (optic vesicles)."]
+        ],
+        body: [
+          ["🧪", "Hormones", "hCG is rising fast, roughly doubling every 2–3 days. Oestrogen and progesterone (still mostly from the corpus luteum in the ovary) keep climbing."],
+          ["❤️", "Heart & blood", "Changes start surprisingly early. Blood vessels relax (progesterone and nitric oxide), so the heart pumps more blood per minute to keep pressure up. Cardiac output is already rising by 5–8 weeks."],
+          ["💧", "Kidneys", "Blood flow through the kidneys and the filtering rate (GFR) jump early, by up to 50% over the pregnancy. More filtering means more urine, which is why the frequent weeing starts long before the uterus is big enough to press on the bladder."],
+          ["🤍", "Breasts", "Oestrogen grows the milk ducts and progesterone grows the milk-producing lobules. Blood flow increases and the areolas start to darken."]
+        ],
+        feel: [
+          ["Nausea", "Linked to hCG and oestrogen, and since 2023 to a hormone called GDF15. It's made by the placenta, and how sick you feel depends on how much is made and how sensitive you are to it. Women with low GDF15 levels before pregnancy tend to be more sensitive."],
+          ["Exhaustion", "Progesterone is sedating, blood pressure is lower, and the body is spending a lot of energy building the placenta."],
+          ["Super-sense of smell", "Very common. It probably comes from hormonal effects on the smell centres of the brain. One theory is that it evolved to help avoid spoiled food."]
+        ],
+        nums: [["Embryo length", "~2mm (wk 5) → ~4–6mm (wk 6)"], ["hCG at 5 wks", "~18–7,340 mIU/mL"], ["hCG at 6 wks", "~1,080–56,500 mIU/mL"], ["Heart rate", "Starts ~100–120 bpm"], ["On ultrasound", "Sac ~5 wks · yolk sac ~5.5 · heartbeat ~6 wks"]]
+      },
+      { // Weeks 7–8
+        intro: "Everything is being divided up and refined. The brain splits into regions, the heart is partitioned into four chambers, and hands and feet become paddles with tiny finger and toe ridges. The placenta begins taking over the hormone work from the ovary.",
+        baby: [
+          ["Week 7 · Brain regions", "The top of the neural tube balloons into five sections that become the forebrain (thinking), midbrain and hindbrain (breathing, heart rate, balance). The brain grows so fast that the head is about half the embryo's length."],
+          ["Week 7 · Four-chambered heart", "Walls (septa) grow inside the heart tube to divide it into the left and right atria and ventricles, a process that's complete around 8 weeks after conception. A gap called the foramen ovale stays open so blood can bypass the lungs, which aren't used yet. It closes after birth."],
+          ["Week 7 · Liver makes blood", "Blood cell production moves from the yolk sac to the liver, which is why the liver is so large right now. Later the bone marrow takes over."],
+          ["Week 8 · Fingers and toes", "Ridges appear on the hand and foot plates. Cells between them are programmed to die off (apoptosis), carving out separate fingers and toes over the next week or two."],
+          ["Week 8 · First movements", "Spontaneous twitches can be seen on ultrasound from about 7–8 weeks, far too small to feel. Nerves are reaching the muscles for the first time."],
+          ["Week 8 · Boy or girl, on the inside", "Until now the gonads are identical. In an XY embryo, a gene on the Y chromosome (SRY) switches on around 7 weeks after conception and turns them into testes. Without it, they become ovaries."]
+        ],
+        body: [
+          ["🧪", "Luteal–placental shift", "Between about 7 and 10 weeks the placenta gradually takes over making progesterone from the ovary. Until it does, the pregnancy depends on the corpus luteum."],
+          ["🦋", "Thyroid", "hCG looks a lot like the hormone that stimulates the thyroid (TSH), so it gently revs up Laura's thyroid. Baby relies completely on her thyroid hormone until about 12 weeks, which is one reason iodine matters."],
+          ["❤️", "Blood vessels", "Vessels keep relaxing, so blood pressure starts to drift down. More blood flows to the skin and the mucous membranes (nose, gums)."],
+          ["🌸", "Uterus", "Grows from the size of a small pear towards the size of an orange, mostly by existing muscle cells getting bigger."]
+        ],
+        feel: [
+          ["Morning (all-day) sickness peaks", "Nausea typically peaks between 8 and 12 weeks, the same time hCG peaks and GDF15 rises. Severe vomiting where she can't keep fluids down is hyperemesis gravidarum and needs a doctor."],
+          ["Mood swings", "Oestrogen and progesterone both act on brain chemicals like serotonin and GABA. Big, fast hormone changes plus exhaustion make emotions swing."],
+          ["Stuffy nose, bleeding gums", "Oestrogen swells the lining of the nose and gums and increases blood flow to them."]
+        ],
+        nums: [["Length", "~1cm (wk 7) → ~1.6cm (wk 8)"], ["Weight", "~1g"], ["Heart rate", "~140–170 bpm, climbing"], ["hCG at 7–8 wks", "~7,650–229,000 mIU/mL"]]
+      },
+      { // Weeks 9–10
+        intro: "The end of the embryonic period. By 10 weeks (8 weeks after conception) every major organ is in place, and from here baby is called a fetus. The job changes from building to growing and maturing.",
+        baby: [
+          ["Week 9 · Bones begin", "Ossification centres appear, the spots where soft cartilage starts turning into hard bone. The collarbone is one of the first."],
+          ["Week 9 · Gut in the cord", "The intestines grow faster than the belly can hold them, so they loop out into the umbilical cord for a few weeks. This is normal (physiological herniation). They move back in by about 12 weeks."],
+          ["Week 10 · Officially a fetus", "All organ systems exist in early form. The risk of a major structural birth defect from things like medicines or infection drops a lot after this point, although the brain stays sensitive all pregnancy."],
+          ["Week 10 · Peak heart rate", "Baby's heart rate peaks at around 170–180 bpm at 9–10 weeks, then slowly settles towards 110–160 bpm as the nervous system matures."],
+          ["Week 10 · Kidneys switch on", "The permanent kidneys start making urine around 10–12 weeks. Baby pees into the amniotic fluid, and later in pregnancy that urine makes up most of the fluid."]
+        ],
+        body: [
+          ["🧪", "hCG peaks", "hCG hits its highest level somewhere around 8–11 weeks, then falls and levels off by about 16–20 weeks."],
+          ["🩷", "The placenta switches on fully", "For the first 10 weeks or so, the placenta's arteries are deliberately plugged, so the embryo grows in a low-oxygen environment that protects it from oxygen damage. Around 10–12 weeks the plugs dissolve and Laura's blood starts flowing freely into the placenta."],
+          ["🦴", "Ligaments", "Relaxin, a hormone that peaks in the first trimester, starts loosening ligaments, including the ones around the pelvis."],
+          ["🍽️", "Gut", "Progesterone relaxes smooth muscle all the way along the gut, so food moves through more slowly. That means more bloating and constipation."]
+        ],
+        feel: [
+          ["Peak nausea and fatigue", "The hCG peak lines up with the worst of it for many women."],
+          ["Bloating and constipation", "A slower gut and more water absorbed from the bowel. Iron supplements make it worse; fibre, water and kiwifruit help."],
+          ["Visible veins", "Blood volume is increasing and vessels are dilating, so blue veins on the breasts and belly show more."]
+        ],
+        nums: [["Length", "~2.3cm (wk 9) → ~3.1cm (wk 10)"], ["Weight", "~2–4g"], ["Heart rate", "Peaks ~170–180 bpm"], ["NIPT", "From 10 wks. Placental DNA makes up ~10% of the free DNA in Laura's blood (the 'fetal fraction')"]]
+      },
+      { // Weeks 11–12
+        intro: "Fully formed, just tiny. Baby now has reflexes, the face looks properly human, and the uterus grows up out of the pelvis. For many women the nausea starts to lift as hCG falls from its peak.",
+        baby: [
+          ["Week 11 · Gut moves home", "The intestines slide back into the abdomen and rotate into their final position."],
+          ["Week 11 · Face finishing", "The two halves of the palate (the roof of the mouth) fuse in the middle. Tooth buds for all 20 baby teeth are forming in the gums."],
+          ["Week 12 · Reflexes", "Touching the palm makes the fingers curl, and touching the lips can trigger sucking movements. These are reflexes run by the spinal cord and brainstem."],
+          ["Week 12 · Own thyroid", "Baby's thyroid starts making its own hormone, using iodine from Laura's diet. That's why the 150mcg iodine supplement matters."],
+          ["Week 12 · Bone marrow", "The bone marrow begins making blood cells, slowly taking over from the liver."]
+        ],
+        body: [
+          ["🌸", "Uterus rises", "Around 12 weeks the top of the uterus rises above the pubic bone and can be felt from outside. Moving up out of the pelvis takes some pressure off the bladder."],
+          ["❤️", "Heart & blood", "A large part of the eventual 40–50% rise in cardiac output has already happened by the end of the first trimester. Plasma volume is climbing steadily."],
+          ["🧪", "Hormones", "The placenta has taken over progesterone and oestrogen production from the ovary. hCG is starting its fall from the peak."]
+        ],
+        feel: [
+          ["Nausea easing", "As hCG falls, nausea often settles between 12 and 16 weeks. About 1 in 10 women have it for longer."],
+          ["Headaches", "Blood vessel changes, lower blood sugar, dehydration and cutting back caffeine can all trigger them. Paracetamol is the usual safe choice; check with the GP."],
+          ["Feeling relieved", "The chance of miscarriage drops a lot once a healthy heartbeat has been seen, and again after 12 weeks."]
+        ],
+        nums: [["Length (crown–rump)", "~4.1cm (wk 11) → ~5.4cm (wk 12)"], ["Weight", "~7–14g"], ["Nuchal translucency", "Measured at 11–13+6 wks; normally under 3.5mm"], ["hCG at 9–12 wks", "~25,700–288,000 mIU/mL"]]
+      },
+      { // Weeks 13–14
+        intro: "Welcome to the second trimester. The body catches up to the head, organs start doing their real jobs, and Laura's energy usually comes back as the placenta settles in as the main hormone factory.",
+        baby: [
+          ["Growth spurt", "At 12 weeks the head is about half of baby's length; by 20 weeks it's about a third. The body and limbs are now growing faster than the head."],
+          ["Organs at work", "The liver makes bile, the pancreas makes insulin, and the intestines practise contracting (peristalsis)."],
+          ["Lanugo", "Fine, soft hair starts covering the body. It probably helps hold the protective vernix coating onto the skin later on."],
+          ["If it's a girl", "Her ovaries already contain millions of immature eggs (peaking at around 6–7 million at 20 weeks). The eggs that could one day become your grandchildren are forming inside your baby right now."]
+        ],
+        body: [
+          ["🧪", "Placental hormones", "Besides progesterone and oestrogen, the placenta now makes human placental lactogen (hPL). It slowly makes Laura's cells more resistant to insulin, so more glucose stays in her blood to feed baby."],
+          ["❤️", "Blood pressure", "Blood pressure keeps falling and usually reaches its lowest point in the middle of pregnancy, about 16–24 weeks."],
+          ["🌸", "Uterus", "About the size of a grapefruit and rising into the abdomen. The ligaments holding it (round ligaments) start to stretch."]
+        ],
+        feel: [
+          ["Energy returns", "hCG has dropped from its peak and the body has adjusted to the new hormone levels. Often called the 'honeymoon trimester'."],
+          ["Nosebleeds", "Oestrogen increases blood flow to the delicate lining of the nose, so small vessels burst more easily."],
+          ["Bigger appetite", "Energy needs rise by about 1,400 kJ (340 Cal) a day in the second trimester, roughly an extra sandwich and a glass of milk. It's not 'eating for two'."]
+        ],
+        nums: [["Length", "~7.4cm (wk 13) → ~8.7cm (wk 14)"], ["Weight", "~23–43g"], ["Extra energy needed", "~1,400 kJ/day (2nd trimester)"]]
+      },
+      { // Weeks 15–16
+        intro: "The skeleton hardens, baby practises breathing and swallowing, and Laura's blood volume expands so fast that her blood gets slightly 'diluted'. That's normal.",
+        baby: [
+          ["Skeleton", "Bones are ossifying quickly and show up clearly on ultrasound. The tiny bones of the middle ear are among the first to harden fully."],
+          ["Hearing (getting there)", "The ear's structures are forming. Baby starts reacting to sound from around 19–20 weeks, and consistently by about 25 weeks."],
+          ["Breathing practice", "Baby makes breathing movements, drawing amniotic fluid in and out of the lungs. That stretching helps the lungs grow."],
+          ["Swallowing", "Baby swallows amniotic fluid. That helps the gut develop and keeps the fluid level balanced; from about 16 weeks most of the fluid is baby's urine."],
+          ["Eyes", "Eyelids are still fused shut, but the eyes make slow movements underneath and can sense bright light through the belly."]
+        ],
+        body: [
+          ["❤️", "Blood", "Plasma (the liquid part of blood) rises by about 45% over pregnancy, but red blood cells only rise by about 20%. That dilution is called physiological anaemia, and it's why iron needs rise to 27mg a day."],
+          ["🤍", "Breasts", "Colostrum, the first milk, can start being made from about 16 weeks (lactogenesis I). Some women notice a little leaking later on."],
+          ["✨", "Skin", "Oestrogen and progesterone stimulate pigment cells, so a dark line (linea nigra) can appear down the belly, nipples darken, and some get patchy facial pigment (melasma)."]
+        ],
+        feel: [
+          ["First flutters (quickening)", "Usually felt between 16 and 22 weeks. In a first pregnancy it's often closer to 18–20 weeks. It feels like bubbles or a goldfish turning."],
+          ["Round ligament pain", "Sharp jabs low in the belly or groin when standing up, rolling over or sneezing. The ligaments holding the uterus are stretching and spasm."],
+          ["Light-headedness", "Blood pressure is near its lowest point."]
+        ],
+        nums: [["Length", "~10.1cm (wk 15) → ~11.6cm (wk 16)"], ["Weight", "~70–100g"], ["Iron needed", "27mg/day (up from 18mg)"], ["Plasma volume", "Rising towards +45%"]]
+      },
+      { // Weeks 17–18
+        intro: "Baby lays down the first fat, the nerves start getting insulated, and the anomaly scan is around the corner. Laura's posture and centre of gravity start to shift.",
+        baby: [
+          ["Brown fat", "Special heat-making fat is laid down around the neck, back and kidneys. After birth it burns energy to keep baby warm, since newborns can't shiver."],
+          ["Myelin", "A fatty coating (myelin) starts wrapping around nerves, beginning in the spinal cord. Myelin makes nerve signals travel much faster; the process continues into adulthood."],
+          ["Fingerprints", "The unique ridges on fingertips and toes are fully formed by about 17–19 weeks. They're shaped by baby's exact position and pressure in the uterus, which is why even identical twins have different fingerprints."],
+          ["Meconium", "Baby's first poo is starting to collect in the gut: swallowed skin cells, lanugo, bile and mucus. It normally stays put until after birth."]
+        ],
+        body: [
+          ["❤️", "Heart", "Heart rate is up by about 10–20 beats a minute and each beat pumps about 25% more blood."],
+          ["🦴", "Posture", "As the bump grows forward, the lower back curves more to balance it (lordosis), and relaxin loosens ligaments. Hello, back ache."],
+          ["🌸", "Discharge", "Higher oestrogen and more blood flow make more clear or white discharge (leukorrhoea). It helps protect against infection. Itchy, smelly or coloured discharge should be checked."]
+        ],
+        feel: [
+          ["Back ache", "Posture shift plus looser ligaments."],
+          ["Vivid dreams", "Probably a mix of hormones, more broken sleep (so you remember dreams more) and a lot on your mind."],
+          ["Leg cramps", "Common from now on, especially at night. The exact cause isn't known; stretching the calves before bed helps some people."]
+        ],
+        nums: [["Length", "~13cm (wk 17) → ~14.2cm (wk 18)"], ["Weight", "~140–190g"], ["Anomaly scan", "18–20 weeks"]]
+      },
+      { // Weeks 19–20
+        intro: "Halfway! The morphology scan takes a detailed look at every organ. Baby is coated in a waxy cream, sleeps and wakes on a cycle, and starts responding to sound.",
+        baby: [
+          ["Vernix caseosa", "A white, waxy coating of skin cells and oil. It waterproofs the skin against months in fluid and has natural antibacterial properties."],
+          ["Senses", "The parts of the brain that handle taste, smell, hearing, vision and touch are developing fast. Baby starts reacting to loud sounds around now."],
+          ["Sleep–wake cycles", "Baby has periods of activity and rest. Often they're most active when Laura is lying still at night, because her moving around during the day rocks them to sleep."],
+          ["What the morphology scan checks", "Brain and skull, face and lips, spine, the heart's four chambers and main vessels, stomach, kidneys, bladder, arms, legs, hands, feet, the placenta's position, fluid levels and growth. A low-lying placenta is usually rechecked around 32 weeks, and most move up."]
+        ],
+        body: [
+          ["🌸", "Uterus", "The top of the uterus (the fundus) reaches the belly button at about 20 weeks. From around 24 weeks the distance from the pubic bone to the top of the uterus in centimetres roughly matches the number of weeks (±2cm)."],
+          ["🫁", "Breathing", "Progesterone makes the brain more sensitive to carbon dioxide, so Laura breathes more deeply: each breath is about 30–40% bigger. That's why she can feel breathless even before the bump is big."],
+          ["❤️", "Lying flat", "From about 20 weeks, lying flat on the back lets the heavy uterus press on the big vein (vena cava) that returns blood to the heart. Some women feel dizzy or sick lying flat, so lying tilted or on the side is better."]
+        ],
+        feel: [
+          ["Kicks", "Getting stronger and more regular, and Grant may be able to feel them from outside in the next few weeks."],
+          ["Breathless", "The deeper breathing effect of progesterone (not lack of oxygen)."],
+          ["Heartburn", "Progesterone relaxes the valve at the top of the stomach, so acid creeps up more easily."]
+        ],
+        nums: [["Length (head to heel)", "~25cm. Measurement switches from crown–rump to head–heel around now, hence the jump"], ["Weight", "~240–300g"], ["Fundal height", "Around the belly button (~20cm)"]]
+      },
+      { // Weeks 21–22
+        intro: "Baby tastes what Laura eats, the lungs enter a new stage, and around 22 weeks is the very edge of when a baby could survive outside the womb with intensive care.",
+        baby: [
+          ["Taste", "Taste buds are working. Flavours from Laura's food pass into the amniotic fluid, and baby swallows them. Studies show babies exposed to a flavour in the womb (like carrot or garlic) are more accepting of it later."],
+          ["Lungs: canalicular stage", "The airways are branching into smaller and smaller tubes, and tiny blood vessels are growing right up against them. This is the setup needed for gas exchange later."],
+          ["Grip", "The grasp reflex is strong. Baby can hold onto the umbilical cord."],
+          ["The edge of viability", "Around 22–23 weeks, babies born early start to have some chance of surviving with intensive neonatal care, although the risks are very high. Every extra week makes a big difference."]
+        ],
+        body: [
+          ["🌸", "Practice contractions", "Braxton Hicks are irregular, usually painless tightenings of the uterus muscle as it 'warms up'. They don't open the cervix."],
+          ["✨", "Stretch marks", "When skin stretches quickly, the collagen in the middle layer (dermis) tears. Hormones make collagen more fragile, and genetics is the biggest factor. Moisturiser keeps skin comfortable but can't fully prevent them."],
+          ["🩸", "Veins", "Progesterone relaxes vein walls, there's more blood, and the uterus presses on pelvic veins. Varicose veins in the legs (and sometimes haemorrhoids) are common."]
+        ],
+        feel: [
+          ["Tightenings", "Braxton Hicks. Regular, painful or increasing tightenings before 37 weeks need a call to the hospital."],
+          ["Itchy belly", "Stretching skin. Severe itching, especially on the hands and feet, needs checking for a liver condition called cholestasis."],
+          ["Tingling hands", "Fluid retention can squeeze the nerve in the wrist (carpal tunnel)."]
+        ],
+        nums: [["Length", "~26.7cm (wk 21) → ~27.8cm (wk 22)"], ["Weight", "~360–430g"]]
+      },
+      { // Weeks 23–24
+        intro: "The lungs start making surfactant, the substance that will let them stay open after birth. In Laura's body, insulin resistance is rising on purpose, which is why the glucose test is coming up.",
+        baby: [
+          ["Surfactant", "Special cells in the lungs (type II pneumocytes) start making surfactant at around 24 weeks. It's a soapy film that lowers surface tension so the tiny air sacs don't collapse with every breath out. If a baby has to be born early, steroid injections for Laura help boost it."],
+          ["Lungs: saccular stage", "From around 24 weeks the ends of the airways form little sacs, the forerunners of alveoli."],
+          ["Hearing", "Baby responds to sound more consistently, and may startle at loud noises. Voices heard often (like Laura's and Grant's) become familiar."],
+          ["Balance", "The inner ear's balance system works, so baby can sense which way is up."],
+          ["Skin", "Thin, red and wrinkly because there's very little fat underneath yet."]
+        ],
+        body: [
+          ["⚡", "Metabolism", "Placental hormones (hPL, placental growth hormone, progesterone, cortisol) make Laura's body more resistant to insulin, so more glucose is left for baby. Her pancreas has to make 2–3 times more insulin to keep up. If it can't, blood sugar rises: gestational diabetes. That's what the 24–28 week glucose test checks."],
+          ["💧", "Swelling", "More fluid in the blood vessels, more diluted blood proteins, and the uterus pressing on pelvic veins all push fluid out into the tissues, especially the feet and ankles."],
+          ["⚠️", "Pre-eclampsia", "A placenta-driven condition that can start after 20 weeks: high blood pressure, protein in the urine, and sometimes a bad headache, vision changes, pain under the right ribs or sudden swelling of the face and hands. These need an urgent call."]
+        ],
+        feel: [
+          ["Swollen ankles", "Fluid shifting into the tissues. Feet up, side lying and comfy shoes help."],
+          ["Heartburn", "Still progesterone, plus the growing uterus pushing the stomach up."],
+          ["Itchy, stretched skin", "Normal stretching. Very itchy hands and feet should be checked."]
+        ],
+        nums: [["Length", "~28.9cm (wk 23) → ~30cm (wk 24)"], ["Weight", "~500–600g"], ["Glucose test (75g)", "Gestational diabetes if fasting ≥5.1, 1-hour ≥10.0 or 2-hour ≥8.5 mmol/L"]]
+      },
+      { // Weeks 25–26
+        intro: "Baby's brain starts to fold, the eyelids get ready to open, and those rhythmic jumps Laura feels are hiccups.",
+        baby: [
+          ["Brain folding", "Up to about 24 weeks the brain's surface is fairly smooth. Now it starts folding into ridges (gyri) and grooves (sulci), which packs more brain into the same skull. This continues fast for the rest of pregnancy."],
+          ["Eyes", "The eyelids, fused since the first trimester, begin to unseal around 26–28 weeks. The retina, the light-sensing layer at the back of the eye, is building its layers."],
+          ["Hiccups", "Hiccups are spasms of the diaphragm. They're thought to be practice for the breathing muscles. Felt as regular little jumps that can last a few minutes."],
+          ["Fat", "White fat (energy storage and insulation) starts building up under the skin, and baby starts to look less wrinkly."]
+        ],
+        body: [
+          ["🫁", "Ribcage", "Relaxin loosens the ribcage joints, so it flares outwards and gets wider to make room, while the diaphragm is pushed up by about 4cm."],
+          ["😴", "Sleep", "More trips to the loo, a growing bump and heartburn make sleep lighter. Restless legs is common and sometimes linked to low iron."],
+          ["🩸", "Iron", "Baby is starting to stock up on iron for after birth, and Laura's blood volume is still expanding, so iron needs are at their highest now."]
+        ],
+        feel: [
+          ["Rhythmic jumps", "Baby's hiccups."],
+          ["Restless legs", "An urge to move the legs in the evening. Worth having iron levels checked."],
+          ["Insomnia", "Physical discomfort plus hormones. A pillow between the knees and under the bump helps."]
+        ],
+        nums: [["Length", "~34.6cm (wk 25) → ~35.6cm (wk 26)"], ["Weight", "~660–760g"], ["Fundal height", "~25–26cm"]]
+      },
+      { // Weeks 27–28
+        intro: "Third trimester. Baby dreams, opens their eyes and starts receiving Laura's antibodies. This is also when side sleeping and tracking movements matter most.",
+        baby: [
+          ["REM sleep", "Brain wave patterns show REM (dreaming) sleep from about 28 weeks. What a fetus 'dreams' about, no one knows."],
+          ["Eyes open", "Baby can open and close their eyes and turn towards a bright light shone on the belly."],
+          ["Antibodies", "Laura's IgG antibodies are carried across the placenta by special receptors (FcRn), and the amount transferred increases steadily towards term. That's why the whooping cough and RSV vaccines are timed for the third trimester: her antibodies become baby's protection for the first months of life."],
+          ["Survival", "Babies born at 28 weeks in a hospital with a NICU have a very high chance of survival."]
+        ],
+        body: [
+          ["😴", "Side sleeping", "Large studies, including Australian and NZ research, found that going to sleep on the back after 28 weeks is linked with about double the risk of stillbirth. Lying on the back compresses the major blood vessels and reduces blood flow to the uterus. Going to sleep on either side is what's recommended. Waking up on your back is fine; just roll back over."],
+          ["🦶", "Movements", "Baby now has an established pattern. A placenta that isn't working well can make a baby move less to save energy, which is why a change in movements always needs a same-day check. Not counting, just knowing their normal."],
+          ["🩸", "Rh factor", "If Laura is Rh negative and baby is Rh positive, a little of baby's blood can cross over and her immune system can make antibodies against it, which could affect this or a future baby. Anti-D injections at 28 and 34 weeks prevent that."]
+        ],
+        feel: [
+          ["Breathless", "The uterus is now pushing up on the diaphragm."],
+          ["Heartburn returns", "The stomach is squashed and the valve is relaxed."],
+          ["Back and pelvic pain", "More weight, looser joints."]
+        ],
+        nums: [["Length", "~36.6cm (wk 27) → ~37.6cm (wk 28)"], ["Weight", "~875g–1kg"], ["RSV vaccine", "28–36 weeks"], ["Whooping cough (dTpa)", "20–32 weeks ideally"]]
+      },
+      { // Weeks 29–30
+        intro: "The weight-gaining phase. Baby lays down fat and bone mineral fast, and Laura's body ramps up how much calcium and iron it absorbs to supply it.",
+        baby: [
+          ["Weight gain", "Baby gains steadily from here, eventually about 200g a week."],
+          ["Bones", "Baby's skeleton takes about 250–300mg of calcium a day in the third trimester, roughly 30g in total by birth."],
+          ["Temperature", "Brown fat stores and the brain's temperature control are maturing, so a baby born now is better able to keep warm (with help)."],
+          ["Lanugo shedding", "The fine body hair starts to fall out. It's swallowed and becomes part of the meconium."]
+        ],
+        body: [
+          ["🦴", "Calcium", "Laura's gut roughly doubles how much calcium it absorbs from food to supply baby's bones. Dairy, fortified plant milks, tinned fish with bones and tofu all help."],
+          ["🦴", "Pelvis", "Relaxin and the weight of baby loosen the pelvic joints. Some women get pelvic girdle pain at the front (pubic bone) or back."],
+          ["🫁", "Oxygen", "Laura's body uses noticeably more oxygen than before pregnancy, for baby, the placenta and her own harder-working heart and lungs."]
+        ],
+        feel: [
+          ["Tired again", "Carrying the extra weight, broken sleep and a higher metabolic rate."],
+          ["Pelvic pain", "A physio can help a lot; a support belt can too."],
+          ["More Braxton Hicks", "Normal if irregular and settle with rest."]
+        ],
+        nums: [["Length", "~38.6cm (wk 29) → ~39.9cm (wk 30)"], ["Weight", "~1.15–1.3kg"], ["Calcium to baby", "~250–300mg/day"]]
+      },
+      { // Weeks 31–32
+        intro: "All five senses are working, baby is practising breathing for a big chunk of the day, and most babies are turning head-down. Laura's blood volume is near its peak.",
+        baby: [
+          ["Five senses", "Touch, taste, smell, hearing and sight (light and dark) are all working. The pupils narrow and widen in response to light."],
+          ["Breathing practice", "Baby makes breathing movements for about a third of the time, strengthening the diaphragm and chest muscles."],
+          ["Turning", "Most babies settle head-down (cephalic) between now and 36 weeks. About 3–4% stay bottom-first (breech) at term."],
+          ["Nails", "Fingernails reach the fingertips. Babies are sometimes born needing a nail trim."]
+        ],
+        body: [
+          ["❤️", "Peak blood volume", "Plasma volume reaches its peak of about 45% above normal around 32–34 weeks. The heart is pumping 40–50% more blood than before pregnancy."],
+          ["🩷", "Amniotic fluid", "Fluid volume is close to its peak, around 800ml to 1 litre, at 34–36 weeks."],
+          ["🌸", "Placenta check", "If the placenta was low at the 20-week scan, it's rechecked now. As the lower uterus stretches, most placentas end up clear of the cervix."]
+        ],
+        feel: [
+          ["Short of breath", "Peak squash on the diaphragm, until baby drops lower in the last weeks."],
+          ["Leaking colostrum", "Prolactin is rising, and the breasts are making first milk."],
+          ["Clumsiness", "Changed centre of gravity and loose ligaments."]
+        ],
+        nums: [["Length", "~41.1cm (wk 31) → ~42.4cm (wk 32)"], ["Weight", "~1.5–1.7kg"], ["Plasma volume", "~+45% at peak"]]
+      },
+      { // Weeks 33–34
+        intro: "Baby's immune system gets a big boost from Laura's antibodies, the lungs mature, and the skull stays soft so it can mould for birth.",
+        baby: [
+          ["Skull", "The skull bones stay separate with soft gaps between them (the sutures and fontanelles). During birth they can overlap slightly so the head fits through the pelvis. The soft spot on top closes by about 18 months."],
+          ["Antibodies", "The transfer of Laura's antibodies speeds up a lot after about 32 weeks. That's one reason babies born very early are more vulnerable to infection."],
+          ["Lungs", "Surfactant levels are rising. Most babies born at 34 weeks breathe well, though some need a little help."],
+          ["Skin", "Turning from red to pink and becoming less see-through as fat fills out underneath."]
+        ],
+        body: [
+          ["🩸", "Clotting", "Clotting factors and fibrinogen rise through pregnancy to protect against bleeding at birth. The downside is a higher risk of blood clots, so keep moving on long trips and drink water."],
+          ["🦴", "Pelvis", "The joint at the front of the pelvis (the pubic symphysis) softens and widens a few millimetres to make room for birth."],
+          ["🩸", "Anti-D", "The second Anti-D injection at 34 weeks if Laura is Rh negative."]
+        ],
+        feel: [
+          ["Pelvic pressure", "Baby's head is getting lower and heavier."],
+          ["Hard to get comfy", "The bump is at its biggest relative to the space inside."],
+          ["Nesting may begin", "A strong urge to prepare the house. It's thought to be partly hormonal."]
+        ],
+        nums: [["Length", "~43.7cm (wk 33) → ~45cm (wk 34)"], ["Weight", "~1.9–2.1kg"]]
+      },
+      { // Weeks 35–36
+        intro: "Final fattening and stocking up. Baby's lungs are essentially mature by 36 weeks, and in a first pregnancy baby often drops into the pelvis around now.",
+        baby: [
+          ["Fat", "Fat goes from about 2–3% of body weight at 28 weeks to about 15% at birth. It's the energy reserve for the first days of feeding and keeps baby warm."],
+          ["Iron stores", "Baby's liver stocks up on iron from Laura's blood, enough to last the first 4–6 months of life."],
+          ["Mature lungs", "By about 35–36 weeks the lungs make enough surfactant for normal breathing at birth."],
+          ["Dropping (lightening)", "In first pregnancies, baby's head often settles down into the pelvis (engages) 2–4 weeks before labour."]
+        ],
+        body: [
+          ["🦠", "Group B strep", "GBS is a common bacteria that lives harmlessly in the gut or vagina of about 1 in 5 women. It doesn't hurt Laura, but it can rarely cause serious infection in a newborn during birth. A swab at 35–37 weeks checks for it; if it's there, antibiotics during labour protect baby."],
+          ["🌸", "Cervix", "Prostaglandins start softening (ripening) the cervix by breaking down and rearranging its collagen."],
+          ["🧪", "Getting ready for labour", "The uterus muscle grows many more oxytocin receptors, so it becomes much more responsive to oxytocin, the hormone that drives contractions."]
+        ],
+        feel: [
+          ["Breathing easier", "If baby drops, there's less pressure on the diaphragm."],
+          ["Weeing even more", "But now there's more pressure on the bladder."],
+          ["Pelvic twinges", "Baby's head pressing on nerves and the cervix."]
+        ],
+        nums: [["Length", "~46.2cm (wk 35) → ~47.4cm (wk 36)"], ["Weight", "~2.4–2.6kg"], ["GBS swab", "35–37 weeks"]]
+      },
+      { // Weeks 37–38
+        intro: "Early term. Baby is ready to be born but still benefits from every extra day, especially for brain growth. Labour hormones are quietly lining up.",
+        baby: [
+          ["Early term", "From 37+0 weeks baby is 'early term'; 39+0 to 40+6 is 'full term'. The last weeks still add fat, lung maturity and brain growth."],
+          ["Brain", "The brain is still growing fast. At birth it's only about a quarter of its adult size, which is why babies are born relatively helpless: a bigger head couldn't fit through the pelvis."],
+          ["Practising reflexes", "Sucking, rooting (turning towards a touch on the cheek) and grasping are all ready for feeding."],
+          ["Lung fluid", "Stress hormones in late pregnancy and labour switch the lungs from making fluid to absorbing it, ready for the first breath."]
+        ],
+        body: [
+          ["🧪", "Progesterone withdrawal", "Progesterone has kept the uterus calm all pregnancy. Near term, its effect drops (the uterus becomes less responsive to it) while oestrogen's effect rises. That tips the uterus towards contracting."],
+          ["🌸", "Cervix", "The cervix softens, thins (effaces) and may start opening a little. The mucus plug that sealed it can come away as a 'show'."],
+          ["🩷", "Placenta", "Weighs about 500g, around one-sixth of baby's weight."]
+        ],
+        feel: [
+          ["Nesting", "Sudden bursts of energy to clean and prepare."],
+          ["A 'show'", "Mucus, sometimes pink or streaked with blood. Labour could be hours or days away."],
+          ["Pressure and twinges", "Baby is low and heavy."]
+        ],
+        nums: [["Length", "~48.6cm (wk 37) → ~49.8cm (wk 38)"], ["Weight", "~2.9–3.1kg"]]
+      },
+      { // Weeks 39–40
+        intro: "Due date. Nobody knows exactly what flips the switch for labour, but it seems to be a conversation between baby, the placenta and Laura's body. Then comes the most dramatic change of all: the first breath.",
+        baby: [
+          ["Who starts labour?", "The placenta releases a hormone called CRH that rises exponentially in late pregnancy, a kind of 'placental clock'. Signals from baby's maturing lungs and adrenal glands are also involved. Together they tip Laura's uterus into labour."],
+          ["The first breath", "At birth, the lungs inflate and the remaining fluid is absorbed. Blood vessels in the lungs open up, the pressure inside the heart flips, and the bypass routes (the foramen ovale and ductus arteriosus) close over the following hours to days. Circulation switches from placenta to lungs in minutes."],
+          ["Delayed cord clamping", "Waiting at least 30–60 seconds before clamping the cord lets extra blood flow from the placenta to baby, boosting iron stores. It's standard practice for healthy babies in Australia."],
+          ["On the due date?", "Only about 1 in 20 babies arrive on their due date. Most come between 38 and 42 weeks."]
+        ],
+        body: [
+          ["🧪", "Oxytocin feedback loop", "Contractions push baby's head onto the cervix. Stretch receptors there signal the brain to release more oxytocin, which makes stronger contractions, which push harder. This positive feedback (the Ferguson reflex) is what makes labour build."],
+          ["🌸", "Stages of labour", "First stage: the cervix opens to 10cm (early labour, then active labour from about 5–6cm). Second stage: pushing and birth. Third stage: delivering the placenta."],
+          ["🌸", "Uterus", "Now about 1kg of muscle, holding roughly 5 litres. It was about 70g before pregnancy, one of the most remarkable growth jobs in the body."]
+        ],
+        feel: [
+          ["Contractions", "Real labour contractions get longer, stronger and closer together and don't settle with rest."],
+          ["Waters breaking", "A gush or a trickle. Call the hospital, and note the time and the colour."],
+          ["Nervous and excited", "Completely normal 💕"]
+        ],
+        nums: [["Average length", "~50–51cm"], ["Average weight", "~3.3–3.5kg"], ["Born on due date", "~1 in 20"], ["Normal range", "Born from 37 to 42 weeks"]]
+      },
+      { // Weeks 41–42
+        intro: "Past due. Most babies born now are perfectly healthy, but the placenta is ageing, so Laura and baby get extra checks and induction is usually offered.",
+        baby: [
+          ["Placenta ageing", "Late in pregnancy the placenta gradually becomes less efficient. Most cope perfectly well, but the risks rise slowly after 41 weeks."],
+          ["Skin", "Babies born late often have dry, peeling skin because most of the protective vernix has gone."],
+          ["Meconium", "A more mature gut means baby is more likely to pass meconium before birth, so staff watch the colour of the waters."]
+        ],
+        body: [
+          ["🩺", "Monitoring", "Checks may include a CTG (monitoring baby's heart rate pattern) and an ultrasound of fluid levels."],
+          ["💉", "Induction", "Usually offered between 41 and 42 weeks. It might start with prostaglandin gel or a balloon catheter to soften and open the cervix, then breaking the waters, then a drip of synthetic oxytocin to start contractions."]
+        ],
+        feel: [
+          ["Impatience", "Very normal. Every day feels like a week."],
+          ["Same signs as before", "Keep watching for labour signs, and always call about reduced movements."]
+        ],
+        nums: [["Late term", "41+0 to 41+6 weeks"], ["Post-term", "42+0 weeks and beyond"], ["Average weight", "~3.6–3.7kg"]]
+      }
+    ];
+    const SCI_SOURCES = [
+      ["The Royal Women's Hospital – Pregnancy & birth", "https://www.thewomens.org.au/health-information/pregnancy-and-birth"],
+      ["Pregnancy, Birth and Baby (Australian Government)", "https://www.pregnancybirthbaby.org.au/"],
+      ["Changes in maternal physiology during pregnancy (BJA CEACCP)", "https://e-safe-anaesthesia.org/e_library/07/changes_in_maternal_physiology_during_pregnancy_ceaccp_2003.pdf"],
+      ["GDF15 and pregnancy sickness (University of Cambridge, Nature 2023)", "https://www.repro.cam.ac.uk/news/cambridge-led-study-discovers-cause-pregnancy-sickness-and-potential-treatment"],
+      ["Safer Baby Bundle – side sleeping & movements", "https://www.saferbaby.org.au/"],
+      ["Moore & Persaud, The Developing Human (embryology textbook)", "https://www.google.com/search?q=The+Developing+Human+Moore+Persaud"]
+    ];
+
+    /* Average size by week (gestational age). Up to week 19 = crown to rump; from week 20 = head to heel. */
+    const SIZE = {
+      3: ["0.1mm", "", "A ball of cells"], 4: ["~1mm", "", "Poppy seed"], 5: ["~2mm", "", "Sesame seed"], 6: ["~5mm", "", "Lentil"],
+      7: ["~1cm", "<1g", "Blueberry"], 8: ["1.6cm", "1g", "Raspberry"], 9: ["2.3cm", "2g", "Olive"], 10: ["3.1cm", "4g", "Kumquat"],
+      11: ["4.1cm", "7g", "Lime"], 12: ["5.4cm", "14g", "Plum"], 13: ["7.4cm", "23g", "Lemon"], 14: ["8.7cm", "43g", "Peach"],
+      15: ["10.1cm", "70g", "Apple"], 16: ["11.6cm", "100g", "Avocado"], 17: ["13cm", "140g", "Pear"], 18: ["14.2cm", "190g", "Sweet potato"],
+      19: ["15.3cm", "240g", "Mango"], 20: ["25.6cm", "300g", "Banana (head to heel)"], 21: ["26.7cm", "360g", "Carrot"], 22: ["27.8cm", "430g", "Papaya"],
+      23: ["28.9cm", "500g", "Grapefruit"], 24: ["30cm", "600g", "Corn cob"], 25: ["34.6cm", "660g", "Cauliflower"], 26: ["35.6cm", "760g", "Broccoli"],
+      27: ["36.6cm", "875g", "Lettuce"], 28: ["37.6cm", "1kg", "Eggplant"], 29: ["38.6cm", "1.15kg", "Butternut"], 30: ["39.9cm", "1.3kg", "Cabbage"],
+      31: ["41.1cm", "1.5kg", "Coconut"], 32: ["42.4cm", "1.7kg", "Squash"], 33: ["43.7cm", "1.9kg", "Pineapple"], 34: ["45cm", "2.1kg", "Rockmelon"],
+      35: ["46.2cm", "2.4kg", "Honeydew"], 36: ["47.4cm", "2.6kg", "Lettuce head"], 37: ["48.6cm", "2.9kg", "Swiss chard bunch"], 38: ["49.8cm", "3.1kg", "Leek bunch"],
+      39: ["50.7cm", "3.3kg", "Small watermelon"], 40: ["51.2cm", "3.5kg", "Pumpkin"], 41: ["51.7cm", "3.6kg", "Pumpkin"], 42: ["51.5cm", "3.7kg", "Watermelon"]
+    };
+
+    function renderSci(i) {
+      const b = TIMELINE[i], s = SCI[i];
+      sheetCur = { type: "sci", i, max: TIMELINE.length - 1 };
+      const pairs = a => a.map(([h, t]) => `<div class="sci-item"><b>${esc(h)}</b><p>${esc(t)}</p></div>`).join("");
+      sheetBody.innerHTML = `
+        <div class="sh-head">
+          <div class="sh-em" aria-hidden="true">${b.em}</div>
+          <div><p class="sci-kicker">🔬 Weeks ${b.w[0]}–${b.w[1]} · the science</p><h3 id="shTitle">${esc(b.title)}</h3></div>
+        </div>
+        <p class="sci-intro">${esc(s.intro)}</p>
+        <div class="sh-sec"><h4><span class="dot baby"></span>Baby's development</h4>${pairs(s.baby)}</div>
+        <div class="sh-sec"><h4><span class="dot mum"></span>What's happening in Laura's body</h4>
+          ${s.body.map(([ic, h, t]) => `<div class="sci-sys"><span aria-hidden="true">${ic}</span><div><b>${esc(h)}</b><p>${esc(t)}</p></div></div>`).join("")}
+        </div>
+        <div class="sh-sec"><h4><span class="dot feel"></span>Why she might feel…</h4>${pairs(s.feel)}</div>
+        <div class="sh-sec"><h4>Key numbers</h4><div class="sci-nums">${s.nums.map(([k, v]) => `<div><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join("")}</div></div>
+        <div class="sh-nav">
+          <button class="btn btn-ghost" data-step="-1" ${i === 0 ? "disabled style=\"opacity:.4\"" : ""}>← Weeks ${i > 0 ? TIMELINE[i - 1].w.join("–") : ""}</button>
+          <button class="btn btn-ghost" data-step="1" ${i === TIMELINE.length - 1 ? "disabled style=\"opacity:.4\"" : ""}>Weeks ${i < TIMELINE.length - 1 ? TIMELINE[i + 1].w.join("–") : ""} →</button>
+        </div>
+        <div class="sh-src"><b>Sources</b><ul>${SCI_SOURCES.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join("")}</ul>Averages vary from baby to baby. General information only: always check with your midwife, GP or obstetrician.</div>`;
+      sheet.scrollTop = 0;
+    }
+    function openSci(i, opener) {
+      sheetOpener = opener; renderSci(i);
+      sheet.classList.add("wide");
+      sheetWrap.classList.add("open"); sheetWrap.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      setTimeout(() => sheet.querySelector(".sheet-close").focus({ preventScroll: true }), 50);
+    }
+    tlEl.addEventListener("click", e => { const b = e.target.closest(".sci-btn"); if (b) openSci(+b.dataset.i, b); });
+
+    /* ---------- Look-ahead slider ---------- */
+    const scRange = document.getElementById("scRange"), scOut = document.getElementById("scOut"), scToday = document.getElementById("scToday"), scMark = document.getElementById("scMark");
+    let todayWeek = null;
+    function dueDate() { const d = store.get("due") || DUE_DATE; return d ? parse(d) : null; }
+    function renderScrub() {
+      const w = +scRange.value, bi = Math.min(TIMELINE.length - 1, Math.floor((w - 1) / 2)), b = TIMELINE[bi], s = SCI[bi];
+      scRange.style.setProperty("--p", ((w - 1) / 41 * 100) + "%");
+      scRange.setAttribute("aria-valuetext", "Week " + w);
+      const due = dueDate();
+      let when = "";
+      if (due) {
+        const start = new Date(due.getTime() - (280 - (w - 1) * 7) * DAY);
+        const diff = todayWeek === null ? 0 : w - todayWeek;
+        when = `<p class="sc-when">Week ${w} starts <b>${start.toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}</b> · ${diff === 0 ? "that's this week 💗" : diff > 0 ? `${diff} week${diff === 1 ? "" : "s"} from now` : `${-diff} week${diff === -1 ? "" : "s"} ago`}</p>`;
+      } else when = `<p class="sc-when">Add the due date above to see the dates.</p>`;
+      const sz = SIZE[w];
+      const len = sz ? parseFloat(sz[0].replace(/[^\d.]/g, "")) * (sz[0].includes("mm") ? .1 : 1) : 0;
+      const d = Math.round(56 + Math.sqrt(len) * 21);
+      const weekly = s.baby.filter(x => x[0].startsWith(`Week ${w} `));
+      const headline = (weekly.length ? weekly : s.baby).slice(0, 2);
+      const tri = triOf(w);
+      scOut.innerHTML = `
+        <div class="sc-top">
+          <div><div class="sc-week">Week <b>${w}</b></div>${when}</div>
+          <span class="sc-tri">${tri}${["", "st", "nd", "rd"][tri]} trimester</span>
+        </div>
+        <div class="sc-body">
+          <div class="sc-size">
+            <div class="sc-ball" style="--d:${Math.min(d, 210)}px"><span>${b.em}</span></div>
+            ${sz ? `<p><b>${sz[0]}</b>${sz[1] ? ` · <b>${sz[1]}</b>` : ""}<br><small>About the size of a ${sz[2].toLowerCase()}</small></p>` : `<p><small>Not conceived yet</small></p>`}
+          </div>
+          <div class="sc-info">
+            <h3>${esc(b.title)}</h3>
+            ${headline.map(([h, t]) => `<div class="sc-fact"><b>${esc(h.replace(/^Week \d+ · /, ""))}</b><p>${esc(t)}</p></div>`).join("")}
+            <div class="sc-fact mum"><b>Laura's body</b><p>${esc(s.body[0][1])}: ${esc(s.body[0][2])}</p></div>
+            <div class="sc-actions">
+              <button class="btn btn-primary sc-sci" data-i="${bi}">🔬 Read the science</button>
+              <a class="btn btn-ghost" href="#timeline" data-goto="${bi}">Show in timeline</a>
+            </div>
+          </div>
+        </div>`;
+    }
+    scRange.addEventListener("input", renderScrub);
+    scOut.addEventListener("click", e => {
+      const s = e.target.closest(".sc-sci"); if (s) openSci(+s.dataset.i, s);
+      const g = e.target.closest("[data-goto]");
+      if (g) {
+        e.preventDefault();
+        document.querySelector(".chip[data-tri='all']").click();
+        document.getElementById("weeks-" + TIMELINE[+g.dataset.goto].w.join("-")).scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+    scToday.addEventListener("click", () => { if (todayWeek) { scRange.value = todayWeek; renderScrub(); } });
+    function syncScrub(wk) {
+      todayWeek = wk;
+      scToday.hidden = wk === null;
+      scMark.hidden = wk === null;
+      if (wk !== null) { scMark.style.left = `calc(14px + (100% - 28px) * ${(wk - 1) / 41})`; scRange.value = wk; }
+      renderScrub();
+    }
 
     /* ---------- Food ----------
        Each food: em (emoji) · name · note (short line on the card) · level · germs · why · instead · tips
@@ -1347,6 +1993,7 @@
     function closeSheet() {
       if (!sheetWrap.classList.contains("open")) return;
       sheetWrap.classList.remove("open"); sheetWrap.setAttribute("aria-hidden", "true");
+      setTimeout(() => sheet.classList.remove("wide"), 300);
       sheet.style.transform = "";
       document.body.style.overflow = "";
       sheetOpener && sheetOpener.focus({ preventScroll: true });
@@ -1357,7 +2004,10 @@
     sheetWrap.addEventListener("click", e => {
       if (e.target.closest("[data-close]")) closeSheet();
       const s = e.target.closest("[data-step]");
-      if (s && !s.disabled) sheetCur.type === "note" ? renderNote(sheetCur.i + +s.dataset.step) : renderSheet(sheetCur.side, sheetCur.i + +s.dataset.step);
+      if (s && !s.disabled) {
+        const n = sheetCur.i + +s.dataset.step;
+        sheetCur.type === "note" ? renderNote(n) : sheetCur.type === "sci" ? renderSci(n) : renderSheet(sheetCur.side, n);
+      }
     });
     document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
     window.addEventListener("hashchange", closeSheet);
